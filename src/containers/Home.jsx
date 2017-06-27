@@ -5,16 +5,17 @@ import React, { Component } from 'react';
 
 
 
-const Home = React.createClass ({
+class Home extends Component {
 	render() {
 
-        let random = null;
+
 
         return (
         <div>
 
             <div className="jumbotron home">
-                <h1 className="homeBanner">Welcome to BookAPP</h1>
+                <h1 className="homeBanner">Welcome to Book App.</h1>
+					 <button className='button'>Click Me</button>
             </div>
 
 
@@ -24,7 +25,7 @@ const Home = React.createClass ({
     );
   }
 
-});
+};
 
 
 export default Home;

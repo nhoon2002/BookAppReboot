@@ -1,0 +1,39 @@
+import React, { Component } from 'react';
+
+
+function getNiceName(routes) {
+	let path = (routes[routes.length - 1] || {}).path || 'Home';
+	return path.replace('/', '')
+			.toUpperCase() || 'Unknown Page';
+}
+
+class Main extends Component {
+
+  render() {
+    return (
+      <div className="Main">
+         <h1>{getNiceName(this.props.routes)}{' '}
+            <small>page</small>
+         </h1>
+
+
+
+        <div className="container Main-content">
+           
+
+
+          {React.cloneElement(this.props.children, this.props)}
+
+
+        </div>
+
+
+      </div>
+
+    );
+
+  }
+}
+
+
+export default Main;

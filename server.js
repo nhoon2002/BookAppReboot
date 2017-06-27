@@ -2,7 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 
-var routes = require("./controller/controller.js");
+
 
 // var connections = [];
 
@@ -29,18 +29,7 @@ app.use(express.static("./public"));
 
 
 
-io.on('connection', function(socket) {
-   // console.log('connected from %s', window.location.hostname );
 
-// console.log(socket.client.conn.id);
-	console.log("connected.", socket.id);
-	socket.on('disconnect', function() {
-		console.log("%s disconnected", socket.id);
-		console.log(Object.keys(io.sockets.sockets));
-		// socket.emit('get clients', 'updating clients after disconect');
-	});
-
-});
 
 
 
