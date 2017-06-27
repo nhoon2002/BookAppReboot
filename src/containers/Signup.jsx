@@ -5,7 +5,7 @@ import {Link} from 'react-router';
 
 
 
-class Home extends Component {
+class Signup extends Component {
 	render() {
 
 
@@ -14,13 +14,14 @@ class Home extends Component {
         <div>
 
             <div className="jumbotron home">
-                <h1 className="homeBanner">Welcome to Book App.</h1>
+                <h1 className="homeBanner">Signup Page.</h1>
 					 <button className='button'>
-						 <Link to='/signin'>Log In</Link>
+						 <Link to='/signin'>Already Have Account.</Link>
 					 </button>
 					 <button className='button'>
-						 <Link to='/signup'>Sign Up</Link>
+						 <Link to='/'>Back to Home.</Link>
 					 </button>
+
             </div>
 
 
@@ -33,4 +34,4 @@ class Home extends Component {
 };
 
 
-export default Home;
+export default Signup;
