@@ -13,8 +13,8 @@ class Home extends Component {
         return (
         <div>
 
-            <div className="jumbotron home">
-                <h1 className="homeBanner">Welcome to Book App.</h1>
+            <div className="jumbotron">
+                <h1>Welcome to Movie App.</h1>
 					 <button className='button'>
 						 <Link to='/signin'>Log In</Link>
 					 </button>

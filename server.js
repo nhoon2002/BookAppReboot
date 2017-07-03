@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
+var routes = require('./controller/controller.js');
 
 
 
@@ -54,7 +55,7 @@ app.use(express.static("./public"));
 
 
 
-
+app.use('/', routes);
 
 server.listen(PORT, function() {
 	  console.log("BookApp listening on PORT: " + PORT);

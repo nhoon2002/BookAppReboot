@@ -12,14 +12,14 @@ class Main extends Component {
   render() {
     return (
       <div className="Main">
-         <h1>{getNiceName(this.props.routes)}{' '}
-            <small>page</small>
-         </h1>
+         <span className="pageName">{getNiceName(this.props.routes)}{' '}
+            page
+         </span>
 
 
 
         <div className="container Main-content">
-           
+
 
 
           {React.cloneElement(this.props.children, this.props)}

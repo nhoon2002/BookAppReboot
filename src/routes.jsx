@@ -17,8 +17,8 @@ const theRoutes = (
 		    <Route path="/" component={App}>
 
 		      <IndexRoute component={Home}/>
-				<Route path='signin' component={Signin} />
-				<Route path='signup' component={Signup} />
+				<Route path='/signin' component={Signin} />
+				<Route path="/signup" component={Signup} />
 
 
 		    </Route>

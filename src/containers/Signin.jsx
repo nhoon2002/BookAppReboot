@@ -13,8 +13,8 @@ class Signin extends Component {
         return (
         <div>
 
-            <div className="jumbotron home">
-                <h1 className="homeBanner">Signin Page.</h1>
+            <div className="jumbotron">
+                <h3>Signin Page.</h3>
 					 <button className='button'>
 						 <Link to='/'>Back to Home</Link>
 					 </button>
