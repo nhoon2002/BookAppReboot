@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router';
 import * as firebase from 'firebase';
-// import regisCont from './registerCont.jsx';
 
 
 
@@ -12,20 +11,24 @@ class Signup extends Component {
 
 
 	  this.handleForm = this.handleForm.bind(this);
+	  this.sample = this.sample.bind(this);
+	  this.sampleD = this.sampleD.bind(this);
+	  this.logOut = this.logOut.bind(this);
+
 	//   this.createAccount = this.createAccount.bind(this);
 
 	}
 
 	componentDidMount() {
-		//When an authentication state has been changed...
+		// When an authentication state has been changed...
 		firebase.auth().onAuthStateChanged(firebaseUser => {
 
 
-		   console.log('Current user: %s', firebase.auth().currentUser.uid);
-
+			 this.props.checkSession(firebaseUser);
 
 		   if(firebaseUser) { //if user is logged in...
 
+				  console.log('Current user: %s', firebase.auth().currentUser.uid);
 		      console.log("auth status changed: logged in as: " + firebaseUser.email);
 
 		   } else {
@@ -34,6 +37,17 @@ class Signup extends Component {
 		   }
 
 		});
+	}
+
+	sample() {
+		this.props.sampleAction()
+	}
+	sampleD() {
+		this.props.sampleActionDispatch()
+	}
+
+	logOut() {
+		this.props.signOut()
 	}
 
 
@@ -49,29 +63,7 @@ class Signup extends Component {
 		console.log("Credentials:", inputs);
 		// TODO: send to store.
 		// this.props.SOMETHING(fieldInputs);
-
-
-
-			var auth = firebase.auth();
-			var promise = auth.createUserWithEmailAndPassword(inputs.email, inputs.password)
-			.then(function() {
-				var user = firebase.auth().currentUser;
-				console.log('User:', user);
-
-				//If successful creation, creates the following children to the user branch (labeled by uid)
-				firebase.database().ref("users").child(user.uid).set({
-					email: inputs.email,
-					username: inputs.username,
-					password: inputs.password
-
-				});
-
-			})
-			.catch(function (error) {
-				console.log(error);
-				alert(error.message);
-			});
-
+		this.props.createAccount(inputs);
 
 	}
 	render() {
@@ -122,6 +114,18 @@ class Signup extends Component {
 
 					 <button className='btn btn-primary' onClick={this.handleForm}>
 						 Create Account!
+					 </button>
+					 <br />
+					 <button className='btn btn-warning' onClick={this.sample}>
+						 Sample Action!
+					 </button>
+					 <br />
+					 <button className='btn btn-warning' onClick={this.sampleD}>
+						 Sample Action Dispatch!
+					 </button>
+					 <br />
+					 <button className='btn btn-warning' onClick={this.logOut}>
+						 Logout!
 					 </button>
 					 <br />
 

@@ -4,9 +4,9 @@ var router = express.Router();
 var path = require('path');
 
 router.get('*', function(req,res) {
-  console.log('sup');
+  console.log('controller.js.7');
   res.sendFile(path.join(__dirname + "/../public/index.html"));
-  console.log('sup');
+  console.log('controller.js.9');
 });
 
 

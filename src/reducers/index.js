@@ -4,11 +4,17 @@ import { routerReducer } from "react-router-redux";
 
 
 import { sampleReducer } from "./sampleReducer";
+import { createAccReducer } from "./createAccReducer";
+import { checkSessionReducer } from "./checkSessionReducer";
+import { loginReducer } from "./loginReducer";
 
 
 
 const rootReducer = combineReducers({
 	sampleReducer,
+	createAccReducer,
+	checkSessionReducer,
+	loginReducer,
 	routing: routerReducer
 });
 export default rootReducer;
