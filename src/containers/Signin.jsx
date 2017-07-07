@@ -13,7 +13,7 @@ class Signin extends Component {
 	  this.handleForm = this.handleForm.bind(this);
 
 	  this.logOut = this.logOut.bind(this);
-
+	  this.googleSignin = this.googleSignin.bind(this);
 
 	}
 
@@ -37,6 +37,9 @@ class Signin extends Component {
 		});
 	}
 
+	googleSignin() {
+		this.props.SigninGoogle()
+	}
 
 	logOut() {
 		this.props.signOut()
@@ -92,6 +95,10 @@ class Signin extends Component {
 
 					 <button className='btn btn-primary' onClick={this.handleForm}>
 						 Sign in!
+					 </button>
+					 <br />
+					 <button className='btn btn-primary' onClick={this.googleSignin}>
+						 Google Sign-in!
 					 </button>
 					 <br />
 

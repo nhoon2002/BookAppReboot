@@ -3,6 +3,7 @@
 export function loginReducer (
    state = {
      signinginAccount: false,
+     signinginGoogle: false,
      accountDetails: "",
      error: "",
 
@@ -11,6 +12,26 @@ export function loginReducer (
 
 
 	switch (action.type) {
+      case "GOOGLE_CREATE_ACCOUNT": {
+         return {
+            ...state,
+            signinginGoogle: true,
+         }
+      }
+      case "GOOGLE_CREATE_ACCOUNT_SUCCESS": {
+         return {
+            ...state,
+            signinginGoogle: false,
+            accountDetails: action.payload
+         }
+      }
+      case "GOOGLE_CREATE_ACCOUNT_ERROR": {
+         return {
+            ...state,
+            signinginGoogle: false,
+            error: action.payload
+         }
+      }
 
 		case "SIGNIN_ACCOUNT": {
 			console.log("Signing in to Firebase...")
@@ -25,7 +46,7 @@ export function loginReducer (
 			return {
 				...state,
 				signinginAccount: false,
-        accountDetails: action.payload
+            accountDetails: action.payload
 			}
 		}
 
