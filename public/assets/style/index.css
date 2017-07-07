@@ -1,9 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+body {
+   font-family: 'Gloria Hallelujah', cursive;
+   background-image: url('../images/theaterbackground.jpg');
+   background-size: cover;
+}
 /*Signup.jsx*/
 .input-group.signup {
    margin: 10px;
+
+}
+
+.buttonSpan {
+   color: white;
 }
 
 /*Main.jsx*/
 .pageName {
    background-color: #ca8e33;
+}
+
+/*Home.jsx*/
+.jumbotron {
+   margin: 20%;
+   min-height: 500px;
+   color: white;
+   background-image: url('../images/theaterbanner.jpg');
+   background-repeat: no-repeat;
+   background-position: center;
+   -webkit-background-size: cover;
+   background-size: cover;
 }

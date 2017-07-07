@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router';
 import * as firebase from 'firebase';
+import {ButtonToolbar, Button} from 'react-bootstrap';
 
 
 
@@ -11,8 +12,8 @@ class Signup extends Component {
 
 
 	  this.handleForm = this.handleForm.bind(this);
-	  this.sample = this.sample.bind(this);
-	  this.sampleD = this.sampleD.bind(this);
+	//   this.sample = this.sample.bind(this);
+	//   this.sampleD = this.sampleD.bind(this);
 	  this.logOut = this.logOut.bind(this);
 
 	//   this.createAccount = this.createAccount.bind(this);
@@ -28,7 +29,7 @@ class Signup extends Component {
 
 		   if(firebaseUser) { //if user is logged in...
 
-				  console.log('Current user: %s', firebase.auth().currentUser.uid);
+				console.log('Current user: %s', firebase.auth().currentUser.uid);
 		      console.log("auth status changed: logged in as: " + firebaseUser.email);
 
 		   } else {
@@ -39,12 +40,12 @@ class Signup extends Component {
 		});
 	}
 
-	sample() {
-		this.props.sampleAction()
-	}
-	sampleD() {
-		this.props.sampleActionDispatch()
-	}
+	// sample() {
+	// 	this.props.sampleAction()
+	// }
+	// sampleD() {
+	// 	this.props.sampleActionDispatch()
+	// }
 
 	logOut() {
 		this.props.signOut()
@@ -104,39 +105,42 @@ class Signup extends Component {
 							  <div className="form-check">
 								 <label className="form-check-label">
 								   <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="private" />
-								   Testing
+								    Testing
 								 </label>
 							  </div>
 						 </form>
 					 </div>
 
 					 {/* Buttons */}
+					 <ButtonToolbar>
+						 <Button bsStyle='danger' onClick={this.handleForm}>
+							 Create Account!
+						 </Button>
 
-					 <button className='btn btn-primary' onClick={this.handleForm}>
-						 Create Account!
-					 </button>
-					 <br />
-					 <button className='btn btn-warning' onClick={this.sample}>
-						 Sample Action!
-					 </button>
-					 <br />
-					 <button className='btn btn-warning' onClick={this.sampleD}>
-						 Sample Action Dispatch!
-					 </button>
-					 <br />
-					 <button className='btn btn-warning' onClick={this.logOut}>
-						 Logout!
-					 </button>
-					 <br />
+						 {/* <button bsStyle='btn btn-warning' onClick={this.sample}>
+							 Sample Action!
+						 </button>
+						 <br />
+						 <button bsStyle='btn btn-warning' onClick={this.sampleD}>
+							 Sample Action Dispatch!
+						 </button>
+						 <br /> */}
+						 <Button bsStyle='warning' onClick={this.logOut}>
+							 Logout!
+						 </Button>
+					 </ButtonToolbar>
+					 <br/>
+					 <ButtonToolbar>
 
-					 <button className='button'>
-						 <Link to='/signin'>Already Have Account.</Link>
-					 </button>
-				 	 <br />
+						 <Button bsStyle='info'>
+							 <Link to='/signin'><span className='buttonSpan'>Already Have Account.</span></Link>
+						 </Button>
 
-					 <button className='button'>
-						 <Link to='/'>Back to Home.</Link>
-					 </button>
+
+						 <Button bsStyle='info'>
+							 <Link to='/'><span className='buttonSpan'>Back to Home.</span></Link>
+						 </Button>
+					 </ButtonToolbar>
 
             </div>
 

@@ -29,6 +29,7 @@
     "morgan": "^1.8.1",
     "react": "^15.4.2",
     "react-addons-update": "^15.4.2",
+    "react-bootstrap": "^0.31.0",
     "react-dom": "^15.4.2",
     "react-load-script": "0.0.2",
     "react-redux": "^5.0.3",
@@ -42,7 +43,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack & node server",
+    "dev": "npm start & webpack -w",
     "start": "node server",
     "build": "webpack"
   }

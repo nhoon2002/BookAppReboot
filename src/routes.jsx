@@ -7,8 +7,12 @@ import Home from './containers/Home.jsx';
 import Signin from './containers/Signin.jsx';
 import Signup from './containers/Signup.jsx';
 
+import {checkSession} from './actions/userActions';
 
-
+const checkReroute = () => {
+	console.log('Checking for existing session before reroute...');
+	store.dispatch(checkSession());
+}
 
 
 const theRoutes = (
@@ -17,6 +21,7 @@ const theRoutes = (
 		    <Route path="/" component={App}>
 
 		      <IndexRoute component={Home}/>
+				{/* <Route path='/signin' onEnter={checkReroute} component={Signin} /> */}
 				<Route path='/signin' component={Signin} />
 				<Route path="/signup" component={Signup} />
 

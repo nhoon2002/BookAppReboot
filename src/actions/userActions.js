@@ -33,10 +33,14 @@ export function checkSession(user) {
 			dispatch({ type: 'SESSION_EXISTS', payload: user})
 		} else {
 			dispatch({ type: 'SESSION_NULL', payload: ""})
+			// browserHistory.push('/');
 		}
 
  	}
  }
+
+
+
 
 export function createAccount(inputs) {
   return function(dispatch) {
