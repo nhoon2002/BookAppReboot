@@ -1,9 +1,56 @@
 @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+@import url(https://fonts.googleapis.com/css?family=Merriweather+Sans);
 body {
    font-family: 'Gloria Hallelujah', cursive;
    background-image: url('../images/theaterbackground.jpg');
    background-size: cover;
 }
+/*Home.jsx*/
+
+div.social-wrap button {
+   text-align: left;
+   padding-right: 45px;
+   height: 35px;
+   background: none;
+   border: none;
+   display: block;
+   background-size: 35px 35px;
+   background-position: right center;
+   background-repeat: no-repeat;
+   border-radius: 4px;
+   color: white;
+   font-family: 'Gloria Hallelujah', sans-serif;
+   font-size: 14px;
+   margin-bottom: 15px;
+   width: 205px;
+   border-bottom: 2px solid transparent;
+   border-left: 1px solid transparent;
+   border-right: 1px solid transparent;
+   box-shadow: 0 4px 2px -2px black; /*Adjust color depending on color of background*/
+   text-shadow: rgba(0, 0, 0, .5) -1px -1px 0;
+}
+button#facebook {
+   border-color: #2d5073;
+   background-color: #3b5998;
+   background-image: url(http://icons.iconarchive.com/icons/danleech/simple/512/facebook-icon.png);
+   /*border-radius: 70px;*/
+}
+button#googleplus {
+    border-color: #111;
+    background-color: #dc3e0e;
+    background-image:url(http://www.iconsdb.com/icons/preview/white/google-plus-xxl.png);
+    /*border-radius: 70px;*/
+
+}
+button#chaehwa {
+    border-color: #111;
+    background-color: rgb(233, 189, 239);
+    background-image:url('../images/chaehwa.png');
+    /*border-radius: 70px;*/
+
+}
+
+
 /*Signup.jsx*/
 .input-group.signup {
    margin: 10px;
@@ -20,13 +67,33 @@ body {
 }
 
 /*Home.jsx*/
-.jumbotron {
-   margin: 20%;
+.jumbotron.homeBanner {
+   text-align: center;
+   margin: 15%;
    min-height: 500px;
-   color: white;
-   background-image: url('../images/theaterbanner.jpg');
+   background-color: white;
+   color: black;
+   /*background-image: url('../images/slate.png');*/
+   /*background-image: url('https://68.media.tumblr.com/5a20641623d1127d2e1cf9f8c526231c/tumblr_n0wbk5jJdn1rkjlzfo1_500.gif');*/
    background-repeat: no-repeat;
    background-position: center;
    -webkit-background-size: cover;
-   background-size: cover;
+   /*background-size: cover;*/
+   border: 10px solid black;
+}
+
+#black {
+background-color: white;
+}
+#green {
+   background-image: url('../images/theaterbanner.jpg');
+
+}
+/*Header.jsx*/
+#headernav {
+   height: 75px;
+   border: 10px solid black;
+   background-image: url('../images/filmrollheader2.png');
+   background-size: contain;
+   /*border: none;*/
 }

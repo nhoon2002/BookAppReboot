@@ -8,7 +8,24 @@ import {Button, ButtonToolbar} from 'react-bootstrap';
 
 
 class Home extends Component {
+	constructor(props) {
+		super(props)
+
+		this.state = { bcolor: 'black'};
+
+		this.handleHover = this.handleHover.bind(this);
+		this.handleLeave = this.handleLeave.bind(this);
+	}
+
+	handleHover() {
+		this.setState({bcolor: 'green'})
+	}
+	handleLeave() {
+		this.setState({bcolor: 'black'})
+	}
 	componentDidMount() {
+
+
 		// When an authentication state has been changed...
 		firebase.auth().onAuthStateChanged(firebaseUser => {
 
@@ -45,16 +62,30 @@ class Home extends Component {
 
 			  :
 
-			   <div className="jumbotron homeBanner">
+			   <div className="jumbotron homeBanner" id={this.state.bcolor} onMouseEnter={this.handleHover} onMouseLeave={this.handleLeave} >
 				  <h1>Movie App.</h1>
-					<ButtonToolbar>
-						 <Button bsStyle='primary'>
-							 <Link to='/signin'><span className='buttonSpan'>Log In</span></Link>
-						 </Button>
-						 <Button bsStyle='success'>
-							 <Link to='/signup'><span className='buttonSpan'>Sign Up</span></Link>
-						 </Button>
-					</ButtonToolbar>
+				  <div className= 'social-wrap a'>
+						{/* <ButtonToolbar>
+							 <Button bsStyle='primary'>
+								 <Link to='/signin'><span className='buttonSpan'>Log In</span></Link>
+							 </Button>
+
+							 <Button bsStyle='success'>
+								 <Link to='/signup'><span className='buttonSpan'>Sign Up</span></Link>
+							 </Button>
+						</ButtonToolbar> */}
+						<button id='facebook' onClick={() => this.props.SigninFacebook()}>
+							Log in with Facebook
+						</button>
+						{/* <br/> */}
+						<button id='googleplus' onClick={() => this.props.SigninGoogle()}>
+							Log in with Google+
+						</button>
+						<button id='chaehwa' onClick={() => this.props.router.push('/signin')}>
+							Log in with &hearts;채채&hearts;
+						</button>
+
+					</div>
 				</div>
 
 				}

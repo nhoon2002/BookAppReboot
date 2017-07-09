@@ -4,6 +4,7 @@ export function loginReducer (
    state = {
      signinginAccount: false,
      signinginGoogle: false,
+     signinginFacebook: false,
      accountDetails: "",
      error: "",
 
@@ -29,6 +30,26 @@ export function loginReducer (
          return {
             ...state,
             signinginGoogle: false,
+            error: action.payload
+         }
+      }
+      case "FACEBOOK_CREATE_ACCOUNT": {
+         return {
+            ...state,
+            signinginFacebook: true,
+         }
+      }
+      case "FACEBOOK_CREATE_ACCOUNT_SUCCESS": {
+         return {
+            ...state,
+            signinginFacebook: false,
+            accountDetails: action.payload
+         }
+      }
+      case "FACEBOOK_CREATE_ACCOUNT_ERROR": {
+         return {
+            ...state,
+            signinginFacebook: false,
             error: action.payload
          }
       }

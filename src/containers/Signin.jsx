@@ -13,7 +13,7 @@ class Signin extends Component {
 	  this.handleForm = this.handleForm.bind(this);
 
 	  this.logOut = this.logOut.bind(this);
-	  this.googleSignin = this.googleSignin.bind(this);
+
 
 	}
 
@@ -26,7 +26,7 @@ class Signin extends Component {
 
 		   if(firebaseUser) { //if user is logged in...
 
-				  console.log('Current user: %s', firebase.auth().currentUser.uid);
+				console.log('Current user: %s', firebase.auth().currentUser.uid);
 		      console.log("auth status changed: logged in as: " + firebaseUser.email);
 
 		   } else {
@@ -37,9 +37,6 @@ class Signin extends Component {
 		});
 	}
 
-	googleSignin() {
-		this.props.SigninGoogle()
-	}
 
 	logOut() {
 		this.props.signOut()
@@ -50,7 +47,6 @@ class Signin extends Component {
 		// console.log("NAAAAAAAAAME", this.refs.name.value)
 		var inputs = {
 			email: this.refs.email.value,
-
 			password: this.refs.password.value,
 
 		}
@@ -96,25 +92,19 @@ class Signin extends Component {
 					 <button className='btn btn-primary' onClick={this.handleForm}>
 						 Sign in!
 					 </button>
+					 <br/>
 					 <br />
-					 <button className='btn btn-primary' onClick={this.googleSignin}>
-						 Google Sign-in!
-					 </button>
+					 or
 					 <br />
-
-
-					 <button className='btn btn-warning' onClick={this.logOut}>
-						 Logout!
-					 </button>
 					 <br />
 
-					 <button className='button'>
-						 <Link to='/signup'>Create a new account.</Link>
+					 <button className='btn btn-danger' onClick={() => this.props.router.push('/signup')}>
+						 Create a new account.
 					 </button>
-				 	 <br />
-
-					 <button className='button'>
-						 <Link to='/'>Back to Home.</Link>
+					 <br />
+					 <br />
+					 <button className='button btn-success' onClick={() => this.props.router.push('/')}>
+						 Go Back
 					 </button>
 
             </div>
