@@ -58,8 +58,8 @@ class Home extends Component {
 						<img src={this.props.currentUser.photoURL} className='img-circle' alt="Profileimg Circle" />
 						<br/>
 
-					<Button bsStyle='primary' onClick={this.props.signOut}>
-						<span className='buttonSpan'>Log Out</span>
+					<Button bsStyle='primary' onClick={() => this.props.router.push('/search')}>
+						<span className='buttonSpan'>Start Searching!</span>
 					</Button>
 		  	  </div>
 

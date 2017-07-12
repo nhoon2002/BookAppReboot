@@ -7,6 +7,7 @@ import Home from './containers/Home.jsx';
 import Signin from './containers/Signin.jsx';
 import Signup from './containers/Signup.jsx';
 import Library from './containers/Library.jsx';
+import Search from './containers/Search.jsx';
 
 // import {checkSession} from './actions/userActions';
 // import * as firebase from 'firebase';
@@ -26,6 +27,7 @@ const theRoutes = (
 				<Route path='/signin' component={Signin} />
 				<Route path="/signup" component={Signup} />
 				<Route path="/library" component={Library} />
+				<Route path="/search" component={Search} />
 
 
 		    </Route>

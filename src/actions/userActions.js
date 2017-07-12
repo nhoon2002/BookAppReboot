@@ -1,10 +1,29 @@
-
 import axios from 'axios';
 import fetch from 'isomorphic-fetch'
 import { browserHistory } from "react-router";
 import * as firebase from 'firebase';
 
+const apiKey = require('../../controller/config.js').api
 
+export function sampleAxiosToTmdb() {
+	return function(dispatch) {
+		console.log('key:', apiKey);
+	// 	fetch(`/searchQuery'`
+	// 	.then((data) => {
+	// 		console.log("TMDB query data:", data);
+	// 		// if(data.data.sessionUserId){
+	// 		// 	dispatch({ type: "SESSION_EXIST", payload: {
+	// 		// 			checkSessionId : data.data.sessionUserId,
+	// 		// 			checkSessionUser: data.data.sessionUserInfo
+	// 		// 		}
+	// 		// 	});
+	// 		// }else{
+	// 		// 	dispatch({ type: "NO_SESSION" })
+	// 		// 	browserHistory.push('/');
+	// 		// }
+	// 	});
+	}
+}
 export function sampleActionDispatch() {
 	return function(dispatch) {
 		console.log("sampleActionDispatch started");
@@ -40,7 +59,7 @@ export function checkSession(user) {
 			}
 
  		}
-   
+
  }
 
 
