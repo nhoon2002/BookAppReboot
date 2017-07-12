@@ -54,7 +54,10 @@ class Home extends Component {
 			  {
 			  this.props.loginStatus ?
 			  <div className="jumbotron homeBanner">
-			  		<h1>Welcome, {this.props.currentUser.email.split('@')[0]}!</h1>
+			  		<h1>Welcome, {this.props.currentUser.displayName}!</h1>
+						<img src={this.props.currentUser.photoURL} className='img-circle' alt="Profileimg Circle" />
+						<br/>
+
 					<Button bsStyle='primary' onClick={this.props.signOut}>
 						<span className='buttonSpan'>Log Out</span>
 					</Button>

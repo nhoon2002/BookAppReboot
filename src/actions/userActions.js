@@ -31,12 +31,16 @@ export function checkSession(user) {
 	return function(dispatch) {
 		if (user) {
 			dispatch({ type: 'SESSION_EXISTS', payload: user})
+			console.log('browserhistory:', browserHistory);
 		} else {
 			dispatch({ type: 'SESSION_NULL', payload: ""})
-			// browserHistory.push('/');
-		}
+			console.log('current:', browserHistory.getCurrentLocation().pathname);
 
- 	}
+
+			}
+
+ 		}
+   
  }
 
 

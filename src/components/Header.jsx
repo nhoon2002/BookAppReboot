@@ -1,5 +1,6 @@
-import React from 'react';
 import connect from 'react-redux';
+import React from 'react';
+import {Nav, Navbar, NavItem, MenuItem, NavDropdown} from 'react-bootstrap';
 import { Link } from 'react-router';
 
 class Header extends React.Component {
@@ -11,58 +12,58 @@ class Header extends React.Component {
   }
 
 
-
   render() {
-
-  return(
-    <div>
-          <nav className="navbar navbar-default" id='headernav'>
-            <div className="container-fluid">
-
-              <div className="navbar-header">
-                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span className="sr-only">Toggle navigation</span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
-                </button>
-                  <img src='assets/img/logo-icon.png' className="Header-logo" alt="logo" />
-
-              </div>
-
-
-              <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul className="nav navbar-nav">
-                  <li><Link to="/">Home</Link></li>
-                  <li><Link to="/">Profile</Link></li>
-                  <li><Link to="/">Projects</Link></li>
-
-
-
-
-                </ul>
-
-                <ul className="nav navbar-nav navbar-right">
-
-                    <li className="notifications-bar">
-                      <button className="btn btn-primary" type="button">Notifications
-                        <span className="badge">4</span>
-                      </button>
-                    </li>
-                    <li className="navbarPicture">
-
-                      <img className='navbar-profilepic img-circle' src="http://placehold.it/50x50" alt='profilepic'/>
-
-                    </li>
-                    <li className="navbarLogout">Logout</li>
-
-
-                </ul>
-              </div>
-            </div>
-          </nav>
-       </div>
-       )
+    const navbarLoggedin = (
+      <Navbar inverse collapseOnSelect>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <a href="/">MovieApp</a>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav>
+            <NavItem eventKey={1} href="#">Profile</NavItem>
+            <NavItem eventKey={2} onClick={() => this.props.router.push('library')}>Library</NavItem>
+          </Nav>
+          <Nav pullRight>
+            <NavItem eventKey={1} href="#">{this.props.currentUser.displayName}</NavItem>
+            <NavDropdown eventKey={2} title="Settings" id="basic-nav-dropdown">
+              <MenuItem eventKey={2.1}>Action</MenuItem>
+              <MenuItem eventKey={2.2}>Another action</MenuItem>
+              <MenuItem eventKey={2.3}>Something else here</MenuItem>
+              <MenuItem divider />
+              <MenuItem eventKey={2.3} onClick={() => this.props.signOut()}>Sign Out</MenuItem>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    )
+    const navbarDefault = (
+      <Navbar inverse collapseOnSelect>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <a href="/">MovieApp</a>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          {/* <Nav>
+            <NavItem eventKey={1} href="#">Profile</NavItem>
+            <NavItem eventKey={2} href="#">Library</NavItem>
+          </Nav> */}
+          <Nav pullRight>
+            <NavItem eventKey={1} href="#">Login</NavItem>
+            <NavItem eventKey={2} href="#">Signup</NavItem>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    )
+    return(
+      <div id='headernav'>
+        {this.props.loginStatus ? navbarLoggedin : navbarDefault}
+      </div>
+    )
   }
 }
 

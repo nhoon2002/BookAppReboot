@@ -13,7 +13,7 @@ class Main extends Component {
   render() {
     return (
       <div className="Main">
-			<Header />
+			<Header {...this.props} />
 
 
 
