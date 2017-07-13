@@ -8,21 +8,45 @@ class SearchBar extends Component {
       this.state = {qData: []};
 
       this.handleChange = this.handleChange.bind(this);
+      this.updateData = this.updateData.bind(this);
    }
 
    handleChange() {
      var key = this.refs.keyword.value;
-    //  this.setState({keyword: key});
+     this.updateData([''])
      if (key.length > 3) {
        //SEND API REQUEST
        console.log('Criteria met: keyword = %s', key);
-       this.props.fetchQuery(key);
-       this.setState({qData: this.props.queryData})
-       console.log('qdata:',this.state.qData);
-       console.log('queryData:', Array.isArray(this.props.queryData));
+       this.props.fetchQuery(key)
+
+      //  this.setState({qData: this.props.queryData})
+
 
      }
    }
+
+
+   componentDidMount() {
+     var dataArray = this.props.queryData;
+     this.updateData(dataArray);
+     console.log('component mounted with dataArray: ',dataArray);
+
+   }
+   componentWillReceiveProps(nextProps) {
+       if((this.props.queryData) !== (nextProps.queryData)) // Check if it's a new user, you can also use some unique, like the ID
+       {
+              this.updateData(nextProps.queryData);
+              console.log('qdata:',this.state.qData);
+              console.log('queryData:', Array.isArray(this.props.queryData));
+       }
+   }
+   updateData(data) {
+     this.setState({qdata: data})
+     this.forceUpdate();
+   }
+
+
+
 
    render() {
 
@@ -32,7 +56,7 @@ class SearchBar extends Component {
 
       return (
 
-         <div className='container libContainer'>
+         <div>
             <div className='row'>
                <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div>
                <div className='col-md-8 col-lg-8 col-sm-10 leftPanel'>
@@ -45,21 +69,39 @@ class SearchBar extends Component {
             </div>
             <br/>
             <br/>
+
+            {this.props.queryData.length > 0
+            ?
             <div className='row'>
-              <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div>
-              <div className='col-md-8 col-lg-8 col-sm-10 coverflow'>
-                {this.props.queryData.slice(0,10).map((data,i) =>
-                  <div key={i}>
-                    <img src={photoURL + data.poster_path} alt='cover' />
+              {/* <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div> */}
+              <div className='col-md-12 col-lg-12 col-sm-12 coverflow'>
+                {this.props.queryData.map((data,i) =>
+                  <div className='posterDiv' key={i}>
+                    {data.poster_path
+                      ?<img src={photoURL + data.poster_path} alt='cover' />
+                      :<img src={'https://placehold.it/320x480?text='+data.title} alt='nullcover'/>
+                    }
                   </div>
                 )}
               </div>
-              <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div>
+              {/* <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div> */}
               </div>
+            :
+            <div className='row'>
+              <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div>
+              <div className='col-md-8 col-lg-8 col-sm-10 coverflow'>
+
+              </div>
+              <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div>
+            </div>
+            }
+
+
+
          </div>
 
       )
-   }
+    }
 
 
 

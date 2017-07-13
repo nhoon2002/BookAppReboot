@@ -36,7 +36,7 @@ class Search extends Component {
      })
   }
   componentWillUnmount() {
-    document.body.classList.remove('library');
+    document.body.classList.remove('search');
   }
 
 	render() {

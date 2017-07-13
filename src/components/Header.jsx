@@ -23,7 +23,7 @@ class Header extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavItem eventKey={1} href="#">Profile</NavItem>
+            <NavItem eventKey={1} onClick={() => this.props.router.push('search')}>Search</NavItem>
             <NavItem eventKey={2} onClick={() => this.props.router.push('library')}>Library</NavItem>
           </Nav>
           <Nav pullRight>

@@ -18,7 +18,7 @@ class Main extends Component {
 
 
 
-        <div className="container Main-content">
+        <div>
 
 
 

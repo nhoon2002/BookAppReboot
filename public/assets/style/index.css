@@ -207,3 +207,8 @@ p.s:after {
 p.s:hover:after {
     box-shadow: inset 0 -1px 0 rgba(255,255,255,.6), -2px 2px 2px 1px rgba(100,200,255,.5);
 }
+
+.posterDiv {
+  display: inline-block;
+  margin: 10px;
+}
