@@ -2,6 +2,8 @@ import axios from 'axios';
 import fetch from 'isomorphic-fetch'
 import { browserHistory } from "react-router";
 import * as firebase from 'firebase';
+import promise from 'es6-promise'
+promise.polyfill();
 
 const apiKey = require('../../controller/config.js').api
 
@@ -24,6 +26,34 @@ export function sampleAxiosToTmdb() {
 	// 	});
 	}
 }
+
+export function fetchQuery(query) {
+	return function(dispatch) {
+		fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=1&query=${query}`)
+		.then(function(data) {
+			console.log(data);
+			if(!data.ok) {
+				var error = new Error(data.statusText)
+				console.log(error);
+				dispatch({ type:'QUERY_FETCH_ERROR', payload: error});
+
+			} else {
+				return data.json();
+			}
+
+		})
+		.then(function(json) {
+			console.log('Fetched json:', json);
+			if(json.total_results < 1) {
+				dispatch({ type:'QUERY_FETCH_ERROR', payload: 'No results were found'});
+			} else {
+				dispatch({ type:'QUERY_FETCH_SUCCESS', payload: json.results});
+			}
+		})
+	}
+}
+
+
 export function sampleActionDispatch() {
 	return function(dispatch) {
 		console.log("sampleActionDispatch started");

@@ -7,6 +7,7 @@ import { sampleReducer } from "./sampleReducer";
 import { createAccReducer } from "./createAccReducer";
 import { checkSessionReducer } from "./checkSessionReducer";
 import { loginReducer } from "./loginReducer";
+import { tmdbReducer } from "./tmdbReducer";
 
 
 
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
 	createAccReducer,
 	checkSessionReducer,
 	loginReducer,
+	tmdbReducer,
 	routing: routerReducer
 });
 export default rootReducer;

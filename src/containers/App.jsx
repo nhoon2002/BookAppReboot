@@ -14,7 +14,8 @@ function mapStateToProps (state) {
 		createAccount: state.createAccReducer.creatingAccount,
 		loginStatus: state.checkSessionReducer.loggedin,
 		currentUser: state.checkSessionReducer.currentUser,
-		loginAccount: state.loginReducer.signinginAccount
+		loginAccount: state.loginReducer.signinginAccount,
+		queryData: state.tmdbReducer.dataReturned
 		// errorMsgs: state.regErrReducer.errorMsgs,
 		// isLoggedInCheck: state.checkSession.isLoggedIn,
 		// CheckSeshUserID: state.checkSession.sessionUserID,
