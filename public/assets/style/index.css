@@ -76,12 +76,13 @@ div.logo-center {
 }
 
 div.social-wrap {
-   background-color: #fff;
+   background-color: rgba(255, 255, 255, 0.35);
    border: 5px solid #222;
    text-align: center;
    margin: 10% auto;
 }
 div.social-wrap button {
+
    text-align: center;
    padding-right: 45px;
    height: 35px;
