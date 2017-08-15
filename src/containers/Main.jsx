@@ -12,20 +12,21 @@ class Main extends Component {
 
   render() {
     return (
+
       <div className="Main">
 			<Header {...this.props} />
 
 
 
 
-        <div>
+
 
 
 
           {React.cloneElement(this.props.children, this.props)}
 
 
-        </div>
+
 
 
       </div>

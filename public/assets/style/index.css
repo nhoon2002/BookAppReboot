@@ -1,16 +1,35 @@
 @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
-@import url(https://fonts.googleapis.com/css?family=Merriweather+Sans);
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans');
+@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond');
 
-.Main-content {
-  /*margin: 0px !important;*/
+html {
+   /*max-width: 100%;*/
+   /*max-height: 100%;*/
+}
+
+.Main {
+
+  /*background-image: url('../images/movieCollage.jpg');
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;*/
+  /*text-align: center;*/
 }
 
 body {
-   font-family: 'Gloria Hallelujah', cursive;
-   background-image: url('../images/theaterbackground.jpg');
+   width: 100%;
+   height: 100%;
+   /*font-family: 'Gloria Hallelujah', cursive;*/
+   font-family: 'Cormorant Garamond', cursive;
+   background-color: black;
+   background-image: url('../images/movieCollage.jpg');
    /*padding-top: 50%;
    padding-bottom: 50%;*/
-   background-repeat: no-repeat;
+   background-repeat: repeat;
    background-attachment: fixed;
    background-position: center center;
    -webkit-background-size: cover;
@@ -21,17 +40,49 @@ body {
 
 }
 
+
 body.library {
-  background-image: url('../images/shelfsample.jpg');
+  background-image: url('../images/shelfResized.jpg');
 }
 
 body.search {
-   background-image: url('../images/searchsample.jpg');
+   background-image: url('../images/searchResized.jpg');
 }
 /*Home.jsx*/
+.TestLeft {
+   background-color: blue;
+   height: 100vh;
+}
+.TestRight{
+   background-color: red;
+   height: 100vh;
+}
 
+div.logo-center {
+   margin-top: 10%;
+   height: auto;
+   background-color: #222;
+   border: 5px solid #fff;
+
+}
+.spanLogo {
+   margin: auto;
+   padding: 50px 0;
+   font-size: 5em;
+   color: #fff;
+   font-weight: bold;
+   /*font-size-adjust: auto;*/
+   /*text-transform: uppercase;*/
+}
+
+div.social-wrap {
+   background-color: #fff;
+   border: 5px solid #222;
+   text-align: center;
+   margin: 10% auto;
+}
 div.social-wrap button {
-   text-align: left;
+   text-align: center;
    padding-right: 45px;
    height: 35px;
    background: none;
@@ -44,8 +95,8 @@ div.social-wrap button {
    color: white;
    font-family: 'Gloria Hallelujah', sans-serif;
    font-size: 14px;
-   margin-bottom: 15px;
-   width: 205px;
+   margin: 3%;
+   width: 90%;
    border-bottom: 2px solid transparent;
    border-left: 1px solid transparent;
    border-right: 1px solid transparent;
@@ -55,13 +106,13 @@ div.social-wrap button {
 button#facebook {
    border-color: #2d5073;
    background-color: #3b5998;
-   background-image: url(http://icons.iconarchive.com/icons/danleech/simple/512/facebook-icon.png);
+   background-image: url('https://icons.iconarchive.com/icons/danleech/simple/512/facebook-icon.png');
    /*border-radius: 70px;*/
 }
 button#googleplus {
     border-color: #111;
     background-color: #dc3e0e;
-    background-image:url(http://www.iconsdb.com/icons/preview/white/google-plus-xxl.png);
+    background-image:url('http://icons.iconarchive.com/icons/dakirby309/windows-8-metro/72/Web-Google-plus-alt-Metro-icon.png');
     /*border-radius: 70px;*/
 
 }
@@ -90,40 +141,45 @@ button#chaehwa {
 }
 
 /*Home.jsx*/
-.jumbotron.homeBanner {
+
+.homeLogo {
+   margin: 5%;
+}
+.welcomeDiv {
+   /*overflow: scroll;*/
+   width: 100%;
+   background-color: #222;
+   border: 5px solid #fff;
+   color: #fff;
    text-align: center;
-   margin: 15%;
-   min-height: 500px;
-   background-color: white;
-   color: black;
-   /*background-image: url('../images/slate.png');*/
-   /*background-image: url('https://68.media.tumblr.com/5a20641623d1127d2e1cf9f8c526231c/tumblr_n0wbk5jJdn1rkjlzfo1_500.gif');*/
-   background-repeat: no-repeat;
-   background-position: center;
-   -webkit-background-size: cover;
-   /*background-size: cover;*/
-   border: 10px solid black;
-}
-
-#black {
-background-color: white;
-}
-#green {
-   background-image: url('../images/theaterbanner.jpg');
+   padding-bottom: 5%;
+   /*margin: 0 auto;*/
 
 }
+.welcome {
+   margin: 5% auto;
+}
+.logins {
+   margin: 5%;
+   text-align: center;
+
+}
+
 /*Header.jsx*/
 #headernav {
    /*height: 75px;*/
    border: 10px solid black;
-   background-image: url('../images/filmrollheader2.png');
-   background-size: contain;
+   /*background-image: url('../images/filmrollheader2.png');*/
+   /*background-size: contain;*/
    /*border: none;*/
+}
+.navbar {
+   margin: 0 auto;
 }
 .navbar-brand {
   float: left;
-  margin-left: -60px !important;
-  margin-right: 60px !important;
+  /*margin-left: -60px !important;*/
+  /*margin-right: 60px !important;*/
   background-color: white;
 }
 
@@ -211,4 +267,10 @@ p.s:hover:after {
 .posterDiv {
   display: inline-block;
   margin: 10px;
+}
+
+@media (min-width: 990px) {
+   div.logo-center {
+      margin-top : 0;
+   }
 }

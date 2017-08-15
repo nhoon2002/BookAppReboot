@@ -51,51 +51,75 @@ class Home extends Component {
         return (
         <div>
 
+
+
+				  <div className='row homeLogo'>
+					  <div className='col-md-4 col-lg-4 col-sm-1'></div>
+					  <div className='col-md-4 col-lg-4 col-sm-10 logo-center'>
+						  <h1 className='spanLogo'>MovieApp</h1>
+					  </div>
+					  <div className='col-md-4 col-lg-4 col-sm-1'></div>
+
+				  </div>
+
+
 			  {
 			  this.props.loginStatus ?
-			  <div className="jumbotron homeBanner">
-			  		<h1>Welcome, {this.props.currentUser.displayName}!</h1>
-						<img src={this.props.currentUser.photoURL} className='img-circle' alt="Profileimg Circle" />
-						<br/>
+			  <div className='row welcome'>
+				  <div className='col-md-4 col-lg-4 col-sm-1'></div>
+				  <div className='col-md-4 col-lg-4 col-sm-10 welcome'>
+					  <div className='welcomeDiv'>
+						  <span><h2>Welcome, {this.props.currentUser.displayName}!</h2></span>
+						  <br/>
+							  <img src={this.props.currentUser.photoURL} className='img-circle' alt="Profileimg Circle" />
+							  <br/>
+							  <hr/>
 
-					<Button bsStyle='primary' onClick={() => this.props.router.push('/search')}>
-						<span className='buttonSpan'>Start Searching!</span>
-					</Button>
-		  	  </div>
+						  <Button bsStyle='primary' onClick={() => this.props.router.push('/search')}>
+							  <span className='buttonSpan'>Start Searching!</span>
+						  </Button>
+				  		</div>
+				  </div>
+				  <div className='col-md-4 col-lg-4 col-sm-1'></div>
+
+
+
+		  	  </div> /*End Container*/
 
 			  :
 
-			   <div className="jumbotron homeBanner" id={this.state.bcolor} onMouseEnter={this.handleHover} onMouseLeave={this.handleLeave} >
-				  <h1>Movie App.</h1>
-				  <div className= 'social-wrap a'>
-						{/* <ButtonToolbar>
-							 <Button bsStyle='primary'>
-								 <Link to='/signin'><span className='buttonSpan'>Log In</span></Link>
-							 </Button>
 
-							 <Button bsStyle='success'>
-								 <Link to='/signup'><span className='buttonSpan'>Sign Up</span></Link>
-							 </Button>
-						</ButtonToolbar> */}
-						<button id='facebook' onClick={() => this.props.SigninFacebook()}>
-							Log in with Facebook
-						</button>
-						{/* <br/> */}
-						<button id='googleplus' onClick={() => this.props.SigninGoogle()}>
-							Log in with Google+
-						</button>
-						<button id='chaehwa' onClick={() => this.props.router.push('/signin')}>
-							Log in with &hearts;채채&hearts;
-						</button>
+				<div className='row logins'>
+					<div className='col-md-4 col-lg-4 col-sm-1'></div>
+					<div className='col-md-4 col-lg-4 col-sm-10'>
+						<div className= 'social-wrap a'>
 
+							 <button id='facebook' onClick={() => this.props.SigninFacebook()}>
+								 Log in with Facebook
+							 </button>
+							 {/* <br/> */}
+							 <button id='googleplus' onClick={() => this.props.SigninGoogle()}>
+								 Log in with Google+
+							 </button>
+							 <button id='chaehwa' onClick={() => this.props.router.push('/signin')}>
+								 Sign up with email
+							 </button>
+
+						 </div>
 					</div>
+					<div className='col-md-4 col-lg-4 col-sm-1'></div>
+
 				</div>
+
+
+
 
 				}
 
 
 
         </div>
+
 
     );
   }
