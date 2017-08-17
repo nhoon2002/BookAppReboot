@@ -196,7 +196,7 @@ button#chaehwa {
   /*background-color: rgba(255, 0, 0, 0.5);*/
   /*height: 500px;*/
   /*margin-right: 10px;*/
-  margin-top: 300px;
+  margin-top: 20px;
 }
 
 .rightPanel {
@@ -274,4 +274,9 @@ p.s:hover:after {
    div.logo-center {
       margin-top : 0;
    }
+}
+
+/*Lightbox stuff*/
+.footerCount_lkhc9u {
+  display: none;
 }

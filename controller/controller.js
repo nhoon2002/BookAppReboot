@@ -17,7 +17,9 @@ router.get('*', function(req,res) {
 // -------SPECIFIC MOVIE INFO-----------
 // IMAGE SOURCE:
 // COVER https://image.tmdb.org/t/p/w640/{"poster_path" from moviedb}
-// BACKDROP https://image.tmdb.org/t/p/w640/{"backdrop_path" from moviedb}
+// COVER ORIGINAL SIZE
+// https://image.tmdb.org/t/p/original/{"poster_path"}
+// BACKDROP https://image.tmdb.org/t/p/w{640or1280}/{"backdrop_path" from moviedb}
 // APIKEY: c469214d41e7f2dd346083b577e86f36
 // GET: https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
 

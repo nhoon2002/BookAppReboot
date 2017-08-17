@@ -9,20 +9,33 @@ class SearchBar extends Component {
 
       this.handleChange = this.handleChange.bind(this);
       this.updateData = this.updateData.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
    }
 
    handleChange() {
      var key = this.refs.keyword.value;
-     this.updateData([''])
-     if (key.length > 3) {
+     this.updateData(['']) //Clear state.
+     if (key.length > 2) {
        //SEND API REQUEST
        console.log('Criteria met: keyword = %s', key);
-       this.props.fetchQuery(key)
+
 
       //  this.setState({qData: this.props.queryData})
 
 
      }
+   }
+
+   handleSubmit(e) {
+     if (e.charCode == 13) {
+       var key = this.refs.keyword.value;
+       if (key.length > 2) {
+         this.props.fetchQuery(key);
+       } else if (key.length < 2) {
+         console.log('Must Enter at least 2 characters');
+       }
+    }
+
    }
 
 
@@ -42,7 +55,7 @@ class SearchBar extends Component {
    }
    updateData(data) {
      this.setState({qdata: data})
-     this.forceUpdate();
+     this.forceUpdate(); //Force update;
    }
 
 
@@ -60,7 +73,7 @@ class SearchBar extends Component {
             <div className='row'>
                <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div>
                <div className='col-md-8 col-lg-8 col-sm-10 leftPanel'>
-                  <p className="s"><input name="search" id="search" onChange={this.handleChange} type="search" ref="keyword"/></p>
+                  <p className="s"><input name="search" id="search" onChange={this.handleChange} onKeyPress={this.handleSubmit} type="search" ref="keyword"/></p>
                   {/* <button className='btn btn-primary' onClick={() => this.props.sampleAxiosToTmdb()}>Go</button> */}
                </div>
 
@@ -68,33 +81,8 @@ class SearchBar extends Component {
                <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div>
             </div>
             <br/>
-            <br/>
 
-            {this.props.queryData.length > 0
-            ?
-            <div className='row'>
-              {/* <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div> */}
-              <div className='col-md-12 col-lg-12 col-sm-12 coverflow'>
-                {this.props.queryData.map((data,i) =>
-                  <div className='posterDiv' key={i}>
-                    {data.poster_path
-                      ?<img src={photoURL + data.poster_path} alt='cover' />
-                      :<img src={'https://placehold.it/320x480?text='+data.title} alt='nullcover'/>
-                    }
-                  </div>
-                )}
-              </div>
-              {/* <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div> */}
-              </div>
-            :
-            <div className='row'>
-              <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div>
-              <div className='col-md-8 col-lg-8 col-sm-10 coverflow'>
 
-              </div>
-              <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div>
-            </div>
-            }
 
 
 

@@ -26,6 +26,18 @@ export function sampleAxiosToTmdb() {
 	// 	});
 	}
 }
+export function showLightbox(data) {
+	return function(dispatch) {
+		dispatch({ type: 'LIGHTBOX_ON', payload: {poster_path: data.poster_path, title: data.title}})
+	}
+}
+
+export function closeLightbox() {
+	return function(dispatch) {
+		dispatch({ type: 'LIGHTBOX_OFF'})
+	}
+}
+
 
 export function fetchQuery(query) {
 	return function(dispatch) {
