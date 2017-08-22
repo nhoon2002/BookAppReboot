@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Lightbox from 'react-images';
+
 // import Coverflow from 'react-coverflow';
 
 class PosterDiv extends Component {
@@ -17,8 +17,8 @@ class PosterDiv extends Component {
     this.setState(obj)
   }
   handleClick(e) {
-    this.props.showLightbox(this.props.fullData)
-    
+    this.props.showMovieModal(this.props.fullData)
+
 
   }
 

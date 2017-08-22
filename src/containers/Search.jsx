@@ -4,8 +4,8 @@ import * as firebase from 'firebase';
 import { Grid, Row, Col } from 'react-bootstrap';
 import SearchBar from '../components/SearchBar.jsx'
 import PosterField from './PosterField.jsx'
-import Lightbox from 'react-images';
-// import Coverflow from '../components/Coverflow.jsx'
+// import Lightbox from 'react-images';
+import MovieModal from '../components/MovieModal.jsx'
 
 
 
@@ -16,7 +16,7 @@ class Search extends Component {
     this.state = {
 
 		};
-		this.closeBox = this.closeBox.bind(this);
+		this.closeBox = this.closeBox.bind(this); //LIGHTBOX ONLY
 	}
 
   componentDidMount() {
@@ -40,17 +40,18 @@ class Search extends Component {
      })
   }
   componentWillUnmount() {
-    document.body.classList.remove('search');
+    document.body.classList.remove('search'); //For handling background-image changes
   }
 
 	closeBox() {
-		this.props.closeLightbox();
+		this.props.closeMovieModal(); //LIGHTBOX ONLY
 	}
 
 	render() {
+
         return (
           <div>
-						<Lightbox
+						{/* <Lightbox
 						  images={[
 						    {
 									src: this.props.lightboxSrc,
@@ -60,16 +61,19 @@ class Search extends Component {
 						  ]}
 						  isOpen={this.props.lightboxIsOpen}
 						  onClose={this.closeBox}
-							backdropClosesModal={true} 
+							backdropClosesModal={true}
 
-						/>
+
+						/> */}
+						<MovieModal {...this.props}/>
+
             <SearchBar
 							sampleAxiosToTmdb={this.props.sampleAxiosToTmdb} fetchQuery={this.props.fetchQuery}
 							queryData={this.props.queryData}
 						 />
 						<br/>
 
-						<PosterField showLightbox={this.props.showLightbox} queryData={this.props.queryData} />
+						<PosterField showMovieModal={this.props.showMovieModal} queryData={this.props.queryData} />
 
 
            </div>

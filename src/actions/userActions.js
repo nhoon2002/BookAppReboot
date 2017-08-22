@@ -26,15 +26,15 @@ export function sampleAxiosToTmdb() {
 	// 	});
 	}
 }
-export function showLightbox(data) {
+export function showMovieModal(data) {
 	return function(dispatch) {
-		dispatch({ type: 'LIGHTBOX_ON', payload: {poster_path: data.poster_path, title: data.title}})
+		dispatch({ type: 'MOVIEMODAL_ON', payload: {poster_path: data.poster_path, title: data.title, details: data}})
 	}
 }
 
-export function closeLightbox() {
+export function closeMovieModal() {
 	return function(dispatch) {
-		dispatch({ type: 'LIGHTBOX_OFF'})
+		dispatch({ type: 'MOVIEMODAL_OFF'})
 	}
 }
 

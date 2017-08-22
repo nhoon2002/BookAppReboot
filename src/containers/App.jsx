@@ -16,9 +16,10 @@ function mapStateToProps (state) {
 		currentUser: state.checkSessionReducer.currentUser,
 		loginAccount: state.loginReducer.signinginAccount,
 		queryData: state.tmdbReducer.dataReturned,
-		lightboxSrc: state.lightboxReducer.lightboxSrc,
-		lightboxCap: state.lightboxReducer.lightboxCap,
-		lightboxIsOpen: state.lightboxReducer.lightboxIsOpen
+		movieModalSrc: state.movieModalReducer.movieModalSrc,
+		movieModalCap: state.movieModalReducer.movieModalCap,
+		movieModalIsOpen: state.movieModalReducer.movieModalIsOpen,
+		movieModalDetails: state.movieModalReducer.movieModalDetails
 		// errorMsgs: state.regErrReducer.errorMsgs,
 		// isLoggedInCheck: state.checkSession.isLoggedIn,
 		// CheckSeshUserID: state.checkSession.sessionUserID,

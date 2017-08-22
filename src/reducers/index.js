@@ -8,7 +8,7 @@ import { createAccReducer } from "./createAccReducer";
 import { checkSessionReducer } from "./checkSessionReducer";
 import { loginReducer } from "./loginReducer";
 import { tmdbReducer } from "./tmdbReducer";
-import { lightboxReducer } from "./lightboxReducer";
+import { movieModalReducer } from "./movieModalReducer";
 
 
 
@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
 	createAccReducer,
 	checkSessionReducer,
 	loginReducer,
-	lightboxReducer,
+	movieModalReducer,
 	tmdbReducer,
 	routing: routerReducer
 });

@@ -29,7 +29,7 @@
     "morgan": "^1.8.1",
     "react": "^15.4.2",
     "react-addons-update": "^15.4.2",
-    "react-bootstrap": "^0.31.0",
+    "react-bootstrap": "^0.31.2",
     "react-coverflow": "^0.2.3",
     "react-dom": "^15.4.2",
     "react-images": "^0.5.5",
