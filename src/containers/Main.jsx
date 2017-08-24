@@ -14,7 +14,12 @@ class Main extends Component {
     return (
 
       <div className="Main">
-			<Header {...this.props} />
+			<Header
+        router={this.props.router}
+        currentUser={this.props.currentUser}
+        signOut={this.props.signOut}
+        loginStatus={this.props.loginStatus}
+       />
 
 
 

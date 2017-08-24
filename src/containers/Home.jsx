@@ -13,16 +13,10 @@ class Home extends Component {
 
 		this.state = { bcolor: 'black'};
 
-		this.handleHover = this.handleHover.bind(this);
-		this.handleLeave = this.handleLeave.bind(this);
+
 	}
 
-	handleHover() {
-		this.setState({bcolor: 'green'})
-	}
-	handleLeave() {
-		this.setState({bcolor: 'black'})
-	}
+
 	componentDidMount() {
 
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router';
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
+import fire from '../fire.js';
 
 
 
@@ -19,14 +20,14 @@ class Signin extends Component {
 
 	componentDidMount() {
 		// When an authentication state has been changed...
-		firebase.auth().onAuthStateChanged(firebaseUser => {
+		fire.auth().onAuthStateChanged(firebaseUser => {
 
 
 			 this.props.checkSession(firebaseUser);
 
 		   if(firebaseUser) { //if user is logged in...
 
-				console.log('Current user: %s', firebase.auth().currentUser.uid);
+				console.log('Current user: %s', fire.auth().currentUser.uid);
 		      console.log("auth status changed: logged in as: " + firebaseUser.email);
 
 		   } else {

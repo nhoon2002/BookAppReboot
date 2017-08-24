@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import fire from '../fire.js'
+
 
 import { Button } from 'react-bootstrap';
 import { Popover } from 'react-bootstrap';
@@ -24,7 +26,8 @@ class MovieModal extends Component {
 
 
   handleForm(e){
-    alert('handleform clicked!')
+    fire.database().ref(`users/${this.props.currentUser.uid}/movies`).push(this.props.movieModalDetails);
+
     console.log(this.props.movieModalDetails);
   }
 
@@ -53,14 +56,14 @@ class MovieModal extends Component {
               <div className='row'>
 
 
-                  <div className='col-md-6 col-lg-6 col-sm-12 col-xs-12 modalPosterHolder'>
+                  <div className='col-md-6 col-lg-6 col-sm-6 col-xs-12 modalPosterHolder'>
                     {this.props.movieModalDetails.poster_path
                       ?<img id='modalPoster' src={this.props.movieModalSrc} alt='' />
                       :<img id='modalPoster' src={`https://placehold.it/720x960?text=${this.props.movieModalDetails.title}`} alt='' />
                     }
                   </div>
 
-                  <div className='col-md-6 col-lg-6 col-sm-12 col-xs-12 modalDetailsHolder'>
+                  <div className='col-md-6 col-lg-6 col-sm-6 col-xs-12 modalDetailsHolder'>
 
                     <div className='modalDetails'>
                       {this.props.movieModalDetails.original_title === this.props.movieModalDetails.title
@@ -84,11 +87,16 @@ class MovieModal extends Component {
 
 
               </div> {/* End row */}
-              <div className='modalButtonsHolder'>
-                <button className="btn btn-lg btn-primary btn-block" type="button" onClick={this.handleForm}>HandleForm</button>
-                <button className="btn btn-lg btn-warning btn-block" type="button" onClick={this.close}>Close</button>
-              </div>
+              <div className='row'>
 
+                <div className='modalButtonsHolder'>
+                  <button className="btn btn-lg btn-primary btn-modal" type="button">Button1</button>
+                  <button className="btn btn-lg btn-success btn-modal" type="button">Button2</button>
+                  <button className="btn btn-lg btn-danger btn-modal" type="button" onClick={this.handleForm}>HandleForm</button>
+                  <button className="btn btn-lg btn-warning btn-modal" type="button" onClick={this.close}>Close</button>
+                </div>
+
+              </div>
 
             </Modal.Body>
             {/* <Modal.Footer>

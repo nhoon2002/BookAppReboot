@@ -4,6 +4,7 @@ import { browserHistory } from "react-router";
 import * as firebase from 'firebase';
 import promise from 'es6-promise'
 promise.polyfill();
+import fire from '../fire.js'
 
 const apiKey = require('../../controller/config.js').api
 
@@ -121,8 +122,8 @@ export function createAccount(inputs) {
   				//If successful creation, creates the following children to the user branch (labeled by uid)
   				firebase.database().ref("users").child(user.uid).set({
   					email: inputs.email,
-  					username: inputs.username,
-  					password: inputs.password
+  					username: inputs.username
+  					// password: inputs.password
   				});
           dispatch({ type: 'CREATE_ACCOUNT_SUCCESS', payload: { details: inputs, detailsFB: user } });
 					browserHistory.push('/');
@@ -146,6 +147,11 @@ export function SigninGoogle() {
 		  var token = result.credential.accessToken;
 		  // The signed-in user info.
 		  var user = result.user;
+			firebase.database().ref("users").child(user.uid).set({
+				email: user.email,
+				name: user.displayName,
+
+			});
 		  console.log("google auth details:", user);
 		  dispatch({ type: 'GOOGLE_CREATE_ACCOUNT_SUCESSS', payload: user});
 		  browserHistory.push('/');
@@ -173,6 +179,11 @@ export function SigninFacebook() {
 		  var token = result.credential.accessToken;
 		  // The signed-in user info.
 		  var user = result.user;
+			firebase.database().ref("users").child(user.uid).set({
+				email: user.email,
+				name: user.displayName,
+
+			});
 		  console.log("facebook auth details:", user);
 		  dispatch({ type: 'FACEBOOK_CREATE_ACCOUNT_SUCESSS', payload: user});
 		  browserHistory.push('/');
