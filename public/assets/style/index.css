@@ -283,7 +283,7 @@ p.s:hover:after {
 }
 .modal-content {
   /*border: solid 8px pink;*/
-  max-height: 100%;
+  /*max-height: 100%;*/
 }
 .modal-body {
   max-height: 100%
@@ -291,6 +291,26 @@ p.s:hover:after {
 }
 .modalPosterHolder {
   max-height: 100%;
+  border: 3px solid green;
+}
+.modalDetailsHolder {
+  border: 3px solid red;
+}
+.modalDetails {
+  font-size: 1.5em;
+  text-align: left;
+}
+.detailTag {
+  font-weight: bold;
+}
+.modalButtonsHolder{
+  border: 3px solid purple;
+  position: absolute;
+  /*top: 90%;*/
+  /*height: 10%;*/
+  bottom: 0;
+  right: 0;
+  display: inline-block;
 }
 #modalPoster {
   max-width: 95%;

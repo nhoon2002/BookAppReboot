@@ -53,14 +53,40 @@ class MovieModal extends Component {
               <div className='row'>
 
 
-                  <div className='col-md-6 col-lg-6 modalPosterHolder'>
-                    <img id='modalPoster' src={this.props.movieModalSrc} alt='' />
-                  </div>
-                  <div className='col-md-6 col-lg-6'>
-                    <button className="btn btn-lg btn-primary btn-block" type="button" onClick={this.handleForm}>HandleForm</button>
-                    <button className="btn btn-lg btn-warning btn-block" type="button" onClick={this.close}>Close</button>
+                  <div className='col-md-6 col-lg-6 col-sm-12 col-xs-12 modalPosterHolder'>
+                    {this.props.movieModalDetails.poster_path
+                      ?<img id='modalPoster' src={this.props.movieModalSrc} alt='' />
+                      :<img id='modalPoster' src={`https://placehold.it/720x960?text=${this.props.movieModalDetails.title}`} alt='' />
+                    }
                   </div>
 
+                  <div className='col-md-6 col-lg-6 col-sm-12 col-xs-12 modalDetailsHolder'>
+
+                    <div className='modalDetails'>
+                      {this.props.movieModalDetails.original_title === this.props.movieModalDetails.title
+                        ?<p><span className='detailTag'>Original Title:</span> {this.props.movieModalDetails.original_title}
+                        </p>
+                        :<p><span className='detailTag'>Original Title:</span> {this.props.movieModalDetails.title} [{this.props.movieModalDetails.original_title}]
+                        </p>
+
+
+                      }
+                      <p><span className='detailTag'>Release Date:</span> {this.props.movieModalDetails.release_date}
+                      </p>
+                      <p><span className='detailTag'>Synopsis:</span><br/>
+                      {this.props.movieModalDetails.overview}
+                      </p>
+
+                    </div>
+
+
+                  </div>
+
+
+              </div> {/* End row */}
+              <div className='modalButtonsHolder'>
+                <button className="btn btn-lg btn-primary btn-block" type="button" onClick={this.handleForm}>HandleForm</button>
+                <button className="btn btn-lg btn-warning btn-block" type="button" onClick={this.close}>Close</button>
               </div>
 
 
