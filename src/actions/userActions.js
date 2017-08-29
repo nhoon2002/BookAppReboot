@@ -27,6 +27,18 @@ export function sampleAxiosToTmdb() {
 	// 	});
 	}
 }
+export function retrieveSnapshot(user) {
+	return function(dispatch) {
+		fire.database().ref(`users/${user}/movies`).once('value', snapshot =>  {
+			console.log(snapshot.val());
+			var dats = Object.values(snapshot.val());
+			// this.setState({data:dats}) TODO: make this a userActions thing.
+			dispatch({ type: 'FB_SNAP_RETRIEVED', payload: dats})
+
+
+	})
+	}
+}
 export function showMovieModal(data) {
 	return function(dispatch) {
 		dispatch({ type: 'MOVIEMODAL_ON', payload: {poster_path: data.poster_path, title: data.title, details: data}})

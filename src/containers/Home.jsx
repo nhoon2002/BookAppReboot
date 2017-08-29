@@ -43,11 +43,11 @@ class Home extends Component {
 
 
         return (
-        <div>
+        <div className='body_home'>
 
 
 
-				  <div className='row homeLogo'>
+				  {/* <div className='row homeLogo'>
 					  <div className='col-md-4 col-lg-4 col-sm-1'></div>
 					  <div className='col-md-4 col-lg-4 col-sm-10 logo-center'>
 						  <h1 className='spanLogo'>MovieApp</h1>
@@ -55,13 +55,13 @@ class Home extends Component {
 					  <div className='col-md-4 col-lg-4 col-sm-1'></div>
 
 				  </div>
-
+ */}
 
 			  {
 			  this.props.loginStatus ?
-			  <div className='row welcome'>
+			  <div className='row welcome rowhome'>
 				  <div className='col-md-4 col-lg-4 col-sm-1'></div>
-				  <div className='col-md-4 col-lg-4 col-sm-10 welcome'>
+				  <div className='col-md-4 col-lg-4 col-sm-10 welcome homeslate'>
 					  <div className='welcomeDiv'>
 						  <span><h2>Welcome, {this.props.currentUser.displayName}!</h2></span>
 						  <br/>
@@ -83,9 +83,9 @@ class Home extends Component {
 			  :
 
 
-				<div className='row logins'>
-					<div className='col-md-4 col-lg-4 col-sm-1'></div>
-					<div className='col-md-4 col-lg-4 col-sm-10'>
+				<div className='row logins rowhome'>
+					<div className='col-md-2 col-lg-3 col-sm-1'></div>
+					<div className='col-md-8 col-lg-6 col-sm-10 homeslate'>
 						<div className= 'social-wrap a'>
 
 							 <button id='facebook' onClick={() => this.props.SigninFacebook()}>
@@ -101,7 +101,7 @@ class Home extends Component {
 
 						 </div>
 					</div>
-					<div className='col-md-4 col-lg-4 col-sm-1'></div>
+					<div className='col-md-2 col-lg-3 col-sm-1'></div>
 
 				</div>
 

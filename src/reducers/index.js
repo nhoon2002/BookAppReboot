@@ -9,6 +9,7 @@ import { checkSessionReducer } from "./checkSessionReducer";
 import { loginReducer } from "./loginReducer";
 import { tmdbReducer } from "./tmdbReducer";
 import { movieModalReducer } from "./movieModalReducer";
+import { firebaseDbReducer } from "./firebaseDbReducer";
 
 
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
 	loginReducer,
 	movieModalReducer,
 	tmdbReducer,
+	firebaseDbReducer,
 	routing: routerReducer
 });
 export default rootReducer;

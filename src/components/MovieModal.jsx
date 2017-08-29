@@ -26,7 +26,7 @@ class MovieModal extends Component {
 
 
   handleForm(e){
-    fire.database().ref(`users/${this.props.currentUser.uid}/movies`).push(this.props.movieModalDetails);
+    fire.database().ref(`users/${this.props.currentUser.uid}/movies`).push({movieID: this.props.movieModalDetails.id, details:this.props.movieModalDetails});
 
     console.log(this.props.movieModalDetails);
   }
@@ -64,6 +64,12 @@ class MovieModal extends Component {
                   </div>
 
                   <div className='col-md-6 col-lg-6 col-sm-6 col-xs-12 modalDetailsHolder'>
+                    <div className='modalBackdropHolder'>
+                      {this.props.movieModalDetails.backdrop_path
+                        ?<img id='modalBackdrop' src={`https://image.tmdb.org/t/p/w1280${this.props.movieModalDetails.backdrop_path}`} alt='' />
+                        :<img id='modalBackdrop' src={`https://placehold.it/720x960?text=${this.props.movieModalDetails.title}`} alt='' />
+                      }
+                    </div>
 
                     <div className='modalDetails'>
                       {this.props.movieModalDetails.original_title === this.props.movieModalDetails.title
@@ -76,11 +82,12 @@ class MovieModal extends Component {
                       }
                       <p><span className='detailTag'>Release Date:</span> {this.props.movieModalDetails.release_date}
                       </p>
-                      <p><span className='detailTag'>Synopsis:</span><br/>
+                      <p><span className='detailTag' id='detail-synopsis'>Synopsis:</span><br/>
                       {this.props.movieModalDetails.overview}
                       </p>
 
                     </div>
+
 
 
                   </div>
@@ -92,7 +99,7 @@ class MovieModal extends Component {
                 <div className='modalButtonsHolder'>
                   <button className="btn btn-lg btn-primary btn-modal" type="button">Button1</button>
                   <button className="btn btn-lg btn-success btn-modal" type="button">Button2</button>
-                  <button className="btn btn-lg btn-danger btn-modal" type="button" onClick={this.handleForm}>HandleForm</button>
+                  <button className="btn btn-lg btn-danger btn-modal" type="button" onClick={this.handleForm}>Add to Library</button>
                   <button className="btn btn-lg btn-warning btn-modal" type="button" onClick={this.close}>Close</button>
                 </div>
 

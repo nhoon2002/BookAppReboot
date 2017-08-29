@@ -15,7 +15,7 @@ class SearchBar extends Component {
    handleChange() {
      var key = this.refs.keyword.value;
      this.updateData(['']) //Clear state.
-     if (key.length > 2) {
+     if (key.length >= 2) {
        //SEND API REQUEST
        console.log('Criteria met: keyword = %s', key);
 
@@ -29,7 +29,7 @@ class SearchBar extends Component {
    handleSubmit(e) {
      if (e.charCode == 13) {
        var key = this.refs.keyword.value;
-       if (key.length > 2) {
+       if (key.length >= 2) {
          this.props.fetchQuery(key);
        } else if (key.length < 2) {
          console.log('Must Enter at least 2 characters');
