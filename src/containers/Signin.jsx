@@ -65,7 +65,7 @@ class Signin extends Component {
         return (
         <div className = 'container'>
 
-            <div className="jumbotron">
+            <div className="jumbotron signinJumbo">
 
                 <h3>Signin Page.</h3>
 					 <div>

@@ -6,7 +6,8 @@ export function movieModalReducer(
      movieModalSrc:'',
      movieModalIsOpen: false,
      movieModalCap: '',
-     movieModalDetails:''
+     movieModalDetails:'',
+     movieModalTrunc:''
 
 
 	},
@@ -22,7 +23,8 @@ export function movieModalReducer(
 				movieModalSrc: `https://image.tmdb.org/t/p/original${action.payload.poster_path}`,
         movieModalIsOpen: true,
         movieModalCap: action.payload.title,
-        movieModalDetails: action.payload.details
+        movieModalDetails: action.payload.details,
+        movieModalTrunc: action.payload.details.overview.substr(0,500) //characterlimit
 			}
 		}
     case "MOVIEMODAL_OFF": {

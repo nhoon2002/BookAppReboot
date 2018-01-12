@@ -71,14 +71,14 @@ class SearchBar extends Component {
 
          <div>
             <div className='row'>
-               <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div>
+               <div className='col-md-2 col-lg-2 col-sm-1'></div>
                <div className='col-md-8 col-lg-8 col-sm-10 leftPanel'>
                   <p className="s"><input name="search" id="search" onChange={this.handleChange} onKeyPress={this.handleSubmit} type="search" ref="keyword"/></p>
                   {/* <button className='btn btn-primary' onClick={() => this.props.sampleAxiosToTmdb()}>Go</button> */}
                </div>
 
 
-               <div className='col-md-2 col-lg-2 col-sm-1'>Offset</div>
+               <div className='col-md-2 col-lg-2 col-sm-1'></div>
             </div>
             <br/>
 

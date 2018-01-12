@@ -20,6 +20,7 @@ function mapStateToProps (state) {
 		movieModalCap: state.movieModalReducer.movieModalCap,
 		movieModalIsOpen: state.movieModalReducer.movieModalIsOpen,
 		movieModalDetails: state.movieModalReducer.movieModalDetails,
+		movieModalTrunc: state.movieModalReducer.movieModalTrunc,
 		movies: state.firebaseDbReducer.movies,
 
 		// errorMsgs: state.regErrReducer.errorMsgs,

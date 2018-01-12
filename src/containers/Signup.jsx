@@ -72,9 +72,12 @@ class Signup extends Component {
 
 
         return (
-        <div>
+        <div className = 'container'>
+			 <div className='row welcome rowhome'>
+			  <div className='col-md-4 col-lg-4 col-sm-1'></div>
+			  <div className='col-md-4 col-lg-4 col-sm-10 welcome homeslate'>
 
-            <div className="jumbotron">
+            <div className="welcomeDiv signupJumbo">
 
                 <h3>Signup Page.</h3>
 					 <div>
@@ -143,6 +146,9 @@ class Signup extends Component {
 					 </ButtonToolbar>
 
             </div>
+			</div>
+			<div className='col-md-4 col-lg-4 col-sm-1'></div>
+		</div>
 
 
 

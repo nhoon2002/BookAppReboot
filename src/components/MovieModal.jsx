@@ -82,8 +82,8 @@ class MovieModal extends Component {
                       }
                       <p><span className='detailTag'>Release Date:</span> {this.props.movieModalDetails.release_date}
                       </p>
-                      <p><span className='detailTag' id='detail-synopsis'>Synopsis:</span><br/>
-                      {this.props.movieModalDetails.overview}
+                      <p id='pSynopsis'><span className='detailTag' id='detail-synopsis'>Synopsis:</span><br/>
+                      {this.props.movieModalTrunc}
                       </p>
 
                     </div>

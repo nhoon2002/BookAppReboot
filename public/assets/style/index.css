@@ -208,7 +208,19 @@ button#chaehwa {
   .headerAvatar {
     display: none;
   }
+  .modalPosterHolder {
+     display: none;
+ }
+  .modal-content {
+     min-height: 105%;
+     max-height: 105%;
+ }
+
+
 }
+
+
+
 .navbar {
    margin: 0 auto;
 }
@@ -338,7 +350,7 @@ p.s:hover:after {
   border: 3px solid red;
 }
 .modalDetails {
-  font-size: 1.5em;
+  font-size: 1.3em;
   text-align: left;
 }
 
@@ -374,4 +386,11 @@ p.s:hover:after {
   max-width: 95%;
   max-height: 40vh;
   margin: auto 0;
+}
+.signinJumbo {
+   /*width: 50%;*/
+}
+.signupJumbo {
+   width: 500px;
+
 }
