@@ -76,10 +76,30 @@ div.logo-center {
 }
 
 div.social-wrap {
-   background-color: rgba(255, 255, 255, 0.35);
-   border: 5px solid #222;
+   /* background-color: rgba(255, 255, 255, 0.35); */
+   background-color: black;
+
+   /* border: 5px solid #222; */
    text-align: center;
    margin: 5% auto;
+   padding-bottom: 8%;
+
+}
+div.registerBox {
+   /* background-color: rgba(255, 255, 255, 0.35); */
+   background-color: black;
+   /* border: 5px solid #222; */
+   text-align: center;
+   margin: 5% auto;
+   /* padding-bottom: 8%; */
+
+}
+.buttonContainerSignup {
+   text-align: center;
+}
+.btnSignup {
+   margin: 2%;
+
 
 }
 div.social-wrap button {
@@ -97,7 +117,7 @@ div.social-wrap button {
    color: white;
    font-family: 'Gloria Hallelujah', sans-serif;
    font-size: 14px;
-   margin: 3%;
+   margin: 5%;
    width: 90%;
    border-bottom: 2px solid transparent;
    border-left: 1px solid transparent;
@@ -130,6 +150,7 @@ button#chaehwa {
 /*Signup.jsx*/
 .input-group.signup {
    margin: 10px;
+   background-color: white;
 
 }
 
@@ -160,9 +181,10 @@ button#chaehwa {
 }
 
 
+
 .rowhome {
   height: 70vh;
-  width: 70vw;
+  width: 60vw;
   margin: 0 auto;
   text-align: center;
   background-image: url('../images/slate.png');
@@ -320,6 +342,14 @@ p.s:hover:after {
 @media (min-width: 990px) {
    div.logo-center {
       margin-top : 0;
+   }
+}
+@media (max-width: 415px) {
+   .rowhome .homeslate {
+      bottom: 3%;
+   }
+   div.social-wrap button {
+      font-size: 12px;
    }
 }
 .modal-lightbox {

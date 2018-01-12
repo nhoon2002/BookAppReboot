@@ -2,14 +2,37 @@ import connect from 'react-redux';
 import React from 'react';
 import {Nav, Navbar, NavItem, MenuItem, NavDropdown, Image} from 'react-bootstrap';
 import { Link } from 'react-router';
+import * as firebase from 'firebase';
 
 class Header extends React.Component {
 
   constructor(props){
     super(props);
 
-
+    this.state = {photoURL: 'https://placehold.it/100x100'};
   }
+  componentDidMount() {
+     // When an authentication state has been changed...
+     firebase.auth().onAuthStateChanged(firebaseUser => {
+
+
+        this.props.checkSession(firebaseUser);
+        // this.setState({[photoURL: firebaseUser]})
+
+        if(firebaseUser) { //if user is logged in...
+           this.setState({photoURL: firebaseUser.providerData[0].photoURL});
+           console.log(firebaseUser);
+
+           console.log('Current user: %s', firebase.auth().currentUser.uid);
+           console.log("auth status changed: logged in as: " + firebaseUser.email);
+
+        } else {
+           console.log('auth status changed: not logged in');
+
+        }
+
+     });
+ }
 
 
   render() {
@@ -46,7 +69,7 @@ class Header extends React.Component {
               <MenuItem eventKey={2.4} onClick={() => this.props.signOut()}>Sign Out</MenuItem>
             </NavDropdown>
           </Nav>
-          <img className='img-circle headerAvatar' src={this.props.currentUser.photoURL} alt='' />
+          <img className='img-circle headerAvatar' src={this.state.photoURL} alt='' />
 
 
         </Navbar.Collapse>

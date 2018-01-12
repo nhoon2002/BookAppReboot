@@ -8,7 +8,8 @@ import Signin from './containers/Signin.jsx';
 import Signup from './containers/Signup.jsx';
 import Library from './containers/Library.jsx';
 import Search from './containers/Search.jsx';
-
+import fire from './fire.js';
+import {checkSession} from './actions/userActions.js';
 
 // import {checkSession} from './actions/userActions';
 // import * as firebase from 'firebase';
@@ -17,6 +18,14 @@ import Search from './containers/Search.jsx';
 // 	store.dispatch(checkSession(firebase.auth().currentUser));
 // }
 
+fire.auth().onAuthStateChanged(firebaseUser => {
+
+	store.dispatch(checkSession(firebaseUser));
+	if(firebaseUser) console.log('User: %s', firebaseUser.uid);
+	else console.log('User: %s', null);
+
+}
+);
 
 const theRoutes = (
 	<Provider store={store}>
@@ -29,7 +38,7 @@ const theRoutes = (
 				<Route path="/signup" component={Signup} />
 				<Route path="/library" component={Library} />
 				<Route path="/search" component={Search} />
-		
+
 
 
 		    </Route>

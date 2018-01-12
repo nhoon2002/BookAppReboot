@@ -63,56 +63,48 @@ class Signin extends Component {
 
 
         return (
-        <div className = 'container'>
+        <div className = 'body_home'>
+			  <div className='row logins rowhome'>
+				  <div className='col-md-2 col-lg-3 col-sm-1'></div>
+				  <div className='col-md-8 col-lg-6 col-sm-10 homeslate'>
+					  <div className= 'registerBox'>
 
-            <div className="jumbotron signinJumbo">
+						  <form>
+			  				<div className="input-group signup">
+			  					<span className="input-group-addon" id="basic-addon1"></span>
 
-                <h3>Signin Page.</h3>
-					 <div>
-						 <form>
-							 <div className="input-group signup">
-								 <span className="input-group-addon" id="basic-addon1">Email</span>
-
-								  <input type="text" className='form-control' ref="email" placeholder="Enter your email" />
-							 </div>
-
-
-							 <div className="input-group signup">
-								  <span className="input-group-addon" id="basic-addon1">Password</span>
-								  <input type="text" ref="password" className="form-control" placeholder="Enter a password" />
-							 </div>
+			  					 <input type="text" className='form-control' ref="email" placeholder="Enter your email" />
+			  				</div>
 
 
+			  				<div className="input-group signup">
+			  					 <span className="input-group-addon" id="basic-addon1"></span>
+			  					 <input type="text" ref="password" className="form-control" placeholder="Enter a password" />
+			  				</div>
 
+			  			  </form>
+						  <div className="buttonContainerSignup">
+							  {/* <p> */}
+							  	<button className='btn btn-primary btnSignup' onClick={this.handleForm}>Login!</button>
+							  {/* </p> */}
+							  {/* <p> */}
+							   <button className='btn btn-warning btnSignup' onClick={() => this.props.router.push('/signup')}>Register</button>
+						  	  {/* </p> */}
+						  </div>
+						</div>
 
-						 </form>
-					 </div>
+				  </div>
+				  <div className='col-md-2 col-lg-3 col-sm-1'></div>
 
-					 {/* Buttons */}
-
-					 <button className='btn btn-primary' onClick={this.handleForm}>
-						 Sign in!
-					 </button>
-					 <br/>
-					 <br />
-					 or
-					 <br />
-					 <br />
-
-					 <button className='btn btn-danger' onClick={() => this.props.router.push('/signup')}>
-						 Create a new account.
-					 </button>
-					 <br />
-					 <br />
-					 <button className='button btn-success' onClick={() => this.props.router.push('/')}>
-						 Go Back
-					 </button>
-
-            </div>
+			  </div>
 
 
 
-        </div>
+			</div>
+
+
+
+
 
     );
   }

@@ -11,7 +11,7 @@ class Home extends Component {
 	constructor(props) {
 		super(props)
 
-		this.state = { bcolor: 'black'};
+		this.state = { bcolor: 'black', photoURL: 'https://placehold.it/100x100/'};
 
 
 	}
@@ -25,8 +25,11 @@ class Home extends Component {
 
 
 			 this.props.checkSession(firebaseUser);
+			 // this.setState({[photoURL: firebaseUser]})
 
 		   if(firebaseUser) { //if user is logged in...
+
+				console.log(firebaseUser);
 
 				console.log('Current user: %s', firebase.auth().currentUser.uid);
 		      console.log("auth status changed: logged in as: " + firebaseUser.email);
@@ -59,12 +62,12 @@ class Home extends Component {
 
 			  {
 			  this.props.loginStatus ?
-			  <div className='row welcome rowhome'>
+			  <div className='row logins rowhome'>
 				  <div className='col-md-4 col-lg-4 col-sm-1'></div>
 				  <div className='col-md-4 col-lg-4 col-sm-10 welcome homeslate'>
-					  <div className='welcomeDiv' style={{backgroundColor: 'black'}}>
-						  <h2>Welcome</h2>
-						  <span><strong><h3>{this.props.currentUser.displayName}!</h3></strong></span>
+					  {/* <div className='welcomeDiv' style={{backgroundColor: 'black'}}> */}
+
+						  <span><strong><h3>Welcome, {this.props.currentUser.displayName}!</h3></strong></span>
 						  <br/>
 							  <img src={this.props.currentUser.providerData[0].photoURL} className='img-circle' alt="Profileimg Circle" />
 							  <br/>
@@ -73,7 +76,7 @@ class Home extends Component {
 						  <Button bsStyle='primary' onClick={() => this.props.router.push('/search')}>
 							  <span className='buttonSpan'>Start Searching!</span>
 						  </Button>
-				  		</div>
+				  		{/* </div> */}
 				  </div>
 				  <div className='col-md-4 col-lg-4 col-sm-1'></div>
 
@@ -96,7 +99,7 @@ class Home extends Component {
 							 <button id='googleplus' onClick={() => this.props.SigninGoogle()}>
 								 Log in with Google+
 							 </button>
-							 <button id='chaehwa' onClick={() => this.props.router.push('/signin')}>
+							 <button id='chaehwa' onClick={() => this.props.router.push('/signup')}>
 								 Sign up with email
 							 </button>
 

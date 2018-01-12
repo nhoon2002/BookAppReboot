@@ -72,85 +72,57 @@ class Signup extends Component {
 
 
         return (
-        <div className = 'container'>
-			 <div className='row welcome rowhome'>
-			  <div className='col-md-4 col-lg-4 col-sm-1'></div>
-			  <div className='col-md-4 col-lg-4 col-sm-10 welcome homeslate'>
+        <div className = 'body_home'>
+			  <div className='row logins rowhome'>
+				  <div className='col-md-2 col-lg-3 col-sm-1 col-xs-1' ></div>
+				  <div className='col-md-8 col-lg-6 col-sm-10 col-xs-10 homeslate'>
+					  <div className= 'registerBox'>
 
-            <div className="welcomeDiv signupJumbo">
+						  <form>
+						  	<div className="input-group signup">
+						  		<span className="input-group-addon" id="basic-addon1"></span>
 
-                <h3>Signup Page.</h3>
-					 <div>
-						 <form>
-							 <div className="input-group signup">
-								 <span className="input-group-addon" id="basic-addon1">Email</span>
+						  		 <input type="text" className='form-control' ref="email" placeholder="Enter your email" />
+						  	</div>
 
-								  <input type="text" className='form-control' ref="email" placeholder="Enter your email" />
-							 </div>
+						  	<div className="input-group signup">
+						  		<span className="input-group-addon" id="basic-addon1"></span>
 
-							 <div className="input-group signup">
-								 <span className="input-group-addon" id="basic-addon1">Username</span>
-
-								  <input type="text" className='form-control' ref="username" placeholder="Select a username" />
-							 </div>
+						  		 <input type="text" className='form-control' ref="username" placeholder="Select a username" />
+						  	</div>
 
 
-							 <div className="input-group signup">
-								  <span className="input-group-addon" id="basic-addon1">Password</span>
-								  <input type="text" ref="password" className="form-control" placeholder="Enter a password" />
-							 </div>
+						  	<div className="input-group signup">
+						  		 <span className="input-group-addon" id="basic-addon1"></span>
+						  		 <input type="text" ref="password" className="form-control" placeholder="Enter a password" />
+						  	</div>
 
-							 <div className="input-group signup">
-								  <span className="input-group-addon" id="basic-addon1">Confirm Password</span>
-								  <input type="text" ref="confirm" className="form-control" placeholder="Confirm your password" />
-							 </div>
+						  	<div className="input-group signup">
+						  		 <span className="input-group-addon" id="basic-addon1"></span>
+						  		 <input type="text" ref="confirm" className="form-control" placeholder="Confirm your password" />
+						  	</div>
 
-							  <div className="form-check">
-								 <label className="form-check-label">
-								   <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="private" />
-								    Testing
-								 </label>
-							  </div>
-						 </form>
-					 </div>
+						  	 {/* <div className="form-check">
+						  		<label className="form-check-label">
+						  		  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="private" />
+						  			Testing
+						  		</label>
+						  	 </div> */}
+						  </form>
+						  <div className="buttonContainerSignup">
+							  {/* <p> */}
+							  	<button className='btn btn-primary btnSignup' onClick={this.handleForm}>Register!</button>
+							  {/* </p> */}
+							  {/* <p> */}
+							   <button className='btn btn-warning btnSignup' onClick={() => this.props.router.push('/signin')}>Login</button>
+						  	  {/* </p> */}
+						  </div>
+						</div>
 
-					 {/* Buttons */}
-					 <ButtonToolbar>
-						 <Button bsStyle='danger' onClick={this.handleForm}>
-							 Create Account!
-						 </Button>
+				  </div>
+				  <div className='col-md-2 col-lg-3 col-sm-1 col-xs-1'></div>
 
-						 {/* <button bsStyle='btn btn-warning' onClick={this.sample}>
-							 Sample Action!
-						 </button>
-						 <br />
-						 <button bsStyle='btn btn-warning' onClick={this.sampleD}>
-							 Sample Action Dispatch!
-						 </button>
-						 <br /> */}
-						 <Button bsStyle='warning' onClick={this.logOut}>
-							 Logout!
-						 </Button>
-					 </ButtonToolbar>
-					 <br/>
-					 <ButtonToolbar>
-
-						 <Button bsStyle='info'>
-							 <Link to='/signin'><span className='buttonSpan'>Already Have Account.</span></Link>
-						 </Button>
-
-
-						 <Button bsStyle='info'>
-							 <Link to='/'><span className='buttonSpan'>Back to Home.</span></Link>
-						 </Button>
-					 </ButtonToolbar>
-
-            </div>
-			</div>
-			<div className='col-md-4 col-lg-4 col-sm-1'></div>
-		</div>
-
-
+			  </div>
 
         </div>
 
