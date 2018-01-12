@@ -8,7 +8,7 @@ import Signin from './containers/Signin.jsx';
 import Signup from './containers/Signup.jsx';
 import Library from './containers/Library.jsx';
 import Search from './containers/Search.jsx';
-import MakeCoupon from './containers/MakeCoupon.jsx';
+
 
 // import {checkSession} from './actions/userActions';
 // import * as firebase from 'firebase';
@@ -29,7 +29,7 @@ const theRoutes = (
 				<Route path="/signup" component={Signup} />
 				<Route path="/library" component={Library} />
 				<Route path="/search" component={Search} />
-				<Route path="/makecoupon" component={MakeCoupon} />
+		
 
 
 		    </Route>
