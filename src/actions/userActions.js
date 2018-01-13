@@ -159,11 +159,28 @@ export function SigninGoogle() {
 		  var token = result.credential.accessToken;
 		  // The signed-in user info.
 		  var user = result.user;
-			firebase.database().ref("users").child(user.uid).set({
-				email: user.email,
-				name: user.displayName,
+			var dbRef = firebase.database().ref(`users/${user.uid}/`)
+			dbRef.once('value').then(function(snapshot) {
+				if(!snapshot.val()) {
+					console.log('User database info does not exist yet. Setting initial object...');
+					dbRef.set({
+						email: user.email,
+						name: user.displayName,
 
-			});
+					})
+					.then(
+						function(success) {
+							console.log('DBREFSET SUCCESS');
+						}
+					)
+					.catch(function(error) {
+						console.log('Encounted error: dbREF', error);
+					})
+				}
+			})
+
+
+
 		  console.log("google auth details:", user);
 		  dispatch({ type: 'GOOGLE_CREATE_ACCOUNT_SUCESSS', payload: user});
 		  browserHistory.push('/');
@@ -190,12 +207,25 @@ export function SigninFacebook() {
 		  // This gives you a Facebook Access Token. You can use it to access the FB API.
 		  var token = result.credential.accessToken;
 		  // The signed-in user info.
-		  var user = result.user;
-			firebase.database().ref("users").child(user.uid).set({
-				email: user.email,
-				name: user.displayName,
+			var dbRef = firebase.database().ref(`users/${user.uid}/`)
+			dbRef.once('value').then(function(snapshot) {
+				if(!snapshot.val()) {
+					console.log('User database info does not exist yet. Setting initial object...');
+					dbRef.set({
+						email: user.email,
+						name: user.displayName,
 
-			});
+					})
+					.then(
+						function(success) {
+							console.log('DBREFSET SUCCESS');
+						}
+					)
+					.catch(function(error) {
+						console.log('Encounted error: dbREF', error);
+					})
+				}
+			})
 		  console.log("facebook auth details:", user);
 		  dispatch({ type: 'FACEBOOK_CREATE_ACCOUNT_SUCESSS', payload: user});
 		  browserHistory.push('/');
