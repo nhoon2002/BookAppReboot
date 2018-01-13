@@ -67,7 +67,7 @@ class Home extends Component {
 				  <div className='col-md-4 col-lg-4 col-sm-10 welcome homeslate'>
 					  {/* <div className='welcomeDiv' style={{backgroundColor: 'black'}}> */}
 
-						  <span><strong><h3>Welcome, {this.props.currentUser.displayName}!</h3></strong></span>
+
 						  <br/>
 							  <img src={this.props.currentUser.providerData[0].photoURL} className='img-circle' alt="Profileimg Circle" />
 							  <br/>
