@@ -29,8 +29,8 @@ class PosterDiv extends Component {
 
       <div className='posterDiv' onClick={this.handleClick} data-posterID={this.props.posterID}>
         {this.props.posterPath
-          ?<img src={this.props.imageSrc} alt='cover'/>
-          :<img src={`${nullURL}`+`${this.props.fullData.title}`} alt='nullcover'/>
+          ?<img className='moviePoster' src={this.props.imageSrc} alt='cover'/>
+          :<img className='moviePoster' src={`${nullURL}`+`${this.props.fullData.title}`} alt='nullcover'/>
         }
       </div>
 
