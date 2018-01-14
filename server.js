@@ -17,6 +17,13 @@ var server = require("http").createServer(app);
 
 // Sets an initial port. We'll use this later in our listener
 var PORT = process.env.PORT || 3000;
+app.get('*.js', function (req, res, next) {
+	console.log('hello, got in controller gz function', req.url);
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
+
 
 // Run Morgan for Logging
 app.use(logger("dev"));
@@ -27,11 +34,6 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.use(express.static("./public"));
-app.get('*.js', function (req, res, next) {
-  req.url = req.url + '.gz';
-  res.set('Content-Encoding', 'gzip');
-  next();
-});
 
 
 

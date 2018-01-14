@@ -4,13 +4,13 @@ var path = require('path');
 var apiKey = require('./config.js').api
 
 
-
 router.get('*', function(req,res) {
-  console.log('key:', apiKey);
+  // console.log('key:', apiKey);
   console.log('controller.js.7');
   res.sendFile(path.join(__dirname + "/../public/index.html"));
   console.log('controller.js.9');
 });
+
 
 
 // DOCS https://developers.themoviedb.org/3/getting-started
