@@ -20,7 +20,7 @@ class Header extends React.Component {
         // this.setState({[photoURL: firebaseUser]})
 
         if(firebaseUser) { //if user is logged in...
-           this.setState({photoURL: firebaseUser.providerData[0].photoURL});
+           this.setState({photoURL: firebaseUser.providerData[0].photoURL || 'http://www.kiet.edu/images/default.jpg'});
            console.log(firebaseUser);
 
            console.log('Current user: %s', firebase.auth().currentUser.uid);

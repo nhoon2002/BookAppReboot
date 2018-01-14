@@ -69,7 +69,7 @@ class Home extends Component {
 
 
 						  <br/>
-							  <img src={this.props.currentUser.providerData[0].photoURL} className='img-circle' alt="Profileimg Circle" />
+							  <img src={this.props.currentUser.providerData[0].photoURL || 'http://www.kiet.edu/images/default.jpg'} className='img-circle homeImgCircle' alt="Profileimg Circle" />
 							  <br/>
 							  <hr/>
 

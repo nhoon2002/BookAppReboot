@@ -149,6 +149,10 @@ button#chaehwa {
 .moviePoster {
    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.85)
 }
+.homeImgCircle {
+   width: 100px;
+   height: 100px;
+}
 
 /*Signup.jsx*/
 .input-group.signup {
@@ -228,6 +232,7 @@ button#chaehwa {
   /*display: inline-block;*/
   right: 0;
   height: 50px;
+  width: 50px;
 }
 @media (max-width: 767px) {
   .headerAvatar {
