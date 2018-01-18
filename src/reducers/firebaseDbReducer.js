@@ -4,7 +4,9 @@
 export function firebaseDbReducer(
    state = {
      retrieved: false,
-     movies: []
+     movies: [],
+     posters: [],
+     movieTitles: []
 
 	},
    action) {
@@ -17,7 +19,9 @@ export function firebaseDbReducer(
 			return {
 				...state,
 				retrieved: true,
-        movies: action.payload
+        movies: action.payload.movies,
+        posters: action.payload.posters,
+        movieTitles: action.payload.movieTitles
 			}
 		}
 

@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import * as firebase from 'firebase';
 import fire from '../fire.js'
 import PosterField2 from './PosterField2.jsx';
+import Carousel from '../components/Carousel.jsx';
 
 
 
@@ -59,7 +60,8 @@ class Library extends Component {
         return (
 
 					<div>
-						<PosterField2 data={this.props.movies} />
+						<Carousel data={this.props.posters} labels={this.props.movieTitles}/>
+						{/* <PosterField2 data={this.props.movies} /> */}
 
 
 

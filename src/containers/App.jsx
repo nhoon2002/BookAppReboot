@@ -22,6 +22,8 @@ function mapStateToProps (state) {
 		movieModalDetails: state.movieModalReducer.movieModalDetails,
 		movieModalTrunc: state.movieModalReducer.movieModalTrunc,
 		movies: state.firebaseDbReducer.movies,
+		posters: state.firebaseDbReducer.posters,
+		movieTitles: state.firebaseDbReducer.movieTitles
 
 		// errorMsgs: state.regErrReducer.errorMsgs,
 		// isLoggedInCheck: state.checkSession.isLoggedIn,

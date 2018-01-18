@@ -33,7 +33,11 @@ export function retrieveSnapshot(user) {
 			console.log(snapshot.val());
 			var dats = Object.values(snapshot.val());
 			// this.setState({data:dats}) TODO: make this a userActions thing.
-			dispatch({ type: 'FB_SNAP_RETRIEVED', payload: dats})
+			var posters = dats.map(movie => `https://image.tmdb.org/t/p/w320/${movie.details.poster_path}`)
+			console.log('Posters: %s', posters);
+			var movieTitles = dats.map(movie => movie.details.original_title)
+			console.log('Titles: %s', movieTitles);
+			dispatch({ type: 'FB_SNAP_RETRIEVED', payload: {movies: dats, posters: posters, movieTitles: movieTitles}})
 
 
 	})
