@@ -50,7 +50,7 @@ class MovieModal extends Component {
 
           <Modal dialogClassName='modal-lightbox' show={this.props.movieModalIsOpen} onHide={this.close}>
             <Modal.Header closeButton>
-              <Modal.Title>I'm the Title in the Header</Modal.Title>
+              {/* <Modal.Title>I'm the Title in the Header</Modal.Title> */}
             </Modal.Header>
             <Modal.Body>
               <div className='row'>
@@ -61,15 +61,16 @@ class MovieModal extends Component {
                       ?<img id='modalPoster' src={this.props.movieModalSrc} alt='' />
                       :<img id='modalPoster' src={`https://placehold.it/720x960?text=${this.props.movieModalDetails.title}`} alt='' />
                     }
+                    
                   </div>
 
                   <div className='col-md-6 col-lg-6 col-sm-6 col-xs-12 modalDetailsHolder'>
-                    <div className='modalBackdropHolder'>
+                    {/* <div className='modalBackdropHolder'>
                       {this.props.movieModalDetails.backdrop_path
                         ?<img id='modalBackdrop' src={`https://image.tmdb.org/t/p/w1280${this.props.movieModalDetails.backdrop_path}`} alt='' />
                         :<img id='modalBackdrop' src={`https://placehold.it/720x960?text=${this.props.movieModalDetails.title}`} alt='' />
                       }
-                    </div>
+                    </div> */}
 
                     <div className='modalDetails'>
                       {this.props.movieModalDetails.original_title === this.props.movieModalDetails.title
