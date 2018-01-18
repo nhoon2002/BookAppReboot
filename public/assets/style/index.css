@@ -30,7 +30,7 @@ body {
    /*font-family: 'Gloria Hallelujah', cursive;*/
    font-family: 'Cormorant Garamond', cursive;
    background-color: black;
-   background-image: url('../images/movieCollage.jpg');
+   background-image: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0.75) 100%), url('../images/movieCollage.jpg');
    /*padding-top: 50%;
    padding-bottom: 50%;*/
    background-repeat: repeat;
@@ -46,11 +46,12 @@ body {
 
 
 body.library {
-  background-image: url('../images/shelfResized.jpg');
+  /* background-image: url('../images/shelfResized.jpg'); */
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('../images/shelfResized.jpg');
 }
 
 body.search {
-   background-image: url('../images/searchResized.jpg');
+   background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('../images/searchResized.jpg');
 }
 /*Home.jsx*/
 .TestLeft {
@@ -358,7 +359,7 @@ p.s:hover:after {
   text-align: center;
   width: 100vw;
   top: 0;
-  opacity:0.9; 
+  opacity:0.9;
 
 }
 .modal-lightbox {
@@ -370,7 +371,7 @@ p.s:hover:after {
 .modal-content {
   /*border: solid 8px pink;*/
   /*max-height: 100%;*/
-  background-color: #f1f1f1fc;
+  background-color: rgba(236, 236, 236, 0.92);
 }
 .modal-body {
   max-height: 100%
