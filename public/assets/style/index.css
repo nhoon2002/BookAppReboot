@@ -351,6 +351,14 @@ p.s:hover:after {
       font-size: 12px;
    }
 }
+.alert {
+  position: absolute;
+  z-index: 1100;
+  text-align: center;
+  width: 100vw;
+  top: 0;
+
+}
 .modal-lightbox {
   /*border: solid 10px green;*/
   width: 90%;
@@ -360,6 +368,7 @@ p.s:hover:after {
 .modal-content {
   /*border: solid 8px pink;*/
   /*max-height: 100%;*/
+  background-color: #f1f1f1fc;
 }
 .modal-body {
   max-height: 100%

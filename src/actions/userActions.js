@@ -11,22 +11,27 @@ const apiKey = require('../../controller/config.js').api
 export function sampleAxiosToTmdb() {
 	return function(dispatch) {
 		console.log('key:', apiKey);
-	// 	fetch(`/searchQuery'`
-	// 	.then((data) => {
-	// 		console.log("TMDB query data:", data);
-	// 		// if(data.data.sessionUserId){
-	// 		// 	dispatch({ type: "SESSION_EXIST", payload: {
-	// 		// 			checkSessionId : data.data.sessionUserId,
-	// 		// 			checkSessionUser: data.data.sessionUserInfo
-	// 		// 		}
-	// 		// 	});
-	// 		// }else{
-	// 		// 	dispatch({ type: "NO_SESSION" })
-	// 		// 	browserHistory.push('/');
-	// 		// }
-	// 	});
+
 	}
 }
+export function showNotification(content, type) {
+	// setTimeout(() => hideNotification(), 3000);
+	return function(dispatch) {
+		dispatch({type: 'NOTIFYING', payload: {type: type, content: content}})
+
+
+
+
+	}
+}
+
+export function hideNotification() {
+	return function(dispatch) {
+		dispatch({type: 'DISMISSING', payload: false})
+
+	}
+}
+
 export function retrieveSnapshot(user) {
 	return function(dispatch) {
 		fire.database().ref(`users/${user}/movies`).once('value', snapshot =>  {
@@ -55,6 +60,12 @@ export function closeMovieModal() {
 	}
 }
 
+export function addMovieToLibrary(uid, movieID, details) {
+	return function(dispatch) {
+		fire.database().ref(`users/${uid}/movies`).push({movieID: movieID, details: details});
+		dispatch({type: 'NOTIFYING', payload: {type: 'success', content: 'Sucessfully added movie to the Library!'}})
+	}
+}
 
 export function fetchQuery(query) {
 	return function(dispatch) {

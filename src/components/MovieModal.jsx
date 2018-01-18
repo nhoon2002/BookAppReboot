@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 import fire from '../fire.js'
-
+// import Notification from './Notification.jsx';
 
 import { Button } from 'react-bootstrap';
 import { Popover } from 'react-bootstrap';
@@ -26,9 +26,12 @@ class MovieModal extends Component {
 
 
   handleForm(e){
-    fire.database().ref(`users/${this.props.currentUser.uid}/movies`).push({movieID: this.props.movieModalDetails.id, details:this.props.movieModalDetails});
 
-    console.log(this.props.movieModalDetails);
+    var uid = this.props.currentUser.uid;
+    var movieID = this.props.movieModalDetails.id;
+    var details = this.props.movieModalDetails;
+
+    this.props.addMovieToLibrary(uid,movieID,details);
   }
 
   close() {
@@ -51,6 +54,7 @@ class MovieModal extends Component {
           <Modal dialogClassName='modal-lightbox' show={this.props.movieModalIsOpen} onHide={this.close}>
             <Modal.Header closeButton>
               {/* <Modal.Title>I'm the Title in the Header</Modal.Title> */}
+              {/* <Notification {..this.props}/> */}
             </Modal.Header>
             <Modal.Body>
               <div className='row'>
@@ -61,7 +65,7 @@ class MovieModal extends Component {
                       ?<img id='modalPoster' src={this.props.movieModalSrc} alt='' />
                       :<img id='modalPoster' src={`https://placehold.it/720x960?text=${this.props.movieModalDetails.title}`} alt='' />
                     }
-                    
+
                   </div>
 
                   <div className='col-md-6 col-lg-6 col-sm-6 col-xs-12 modalDetailsHolder'>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../components/Header.jsx';
+import Notification from '../components/Notification.jsx';
 
 
 // function getNiceName(routes) {
@@ -18,6 +19,7 @@ class Main extends Component {
         {...this.props}
 
        />
+       <Notification {...this.props} />
 
 
 

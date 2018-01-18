@@ -22,25 +22,11 @@ function mapStateToProps (state) {
 		movieModalDetails: state.movieModalReducer.movieModalDetails,
 		movieModalTrunc: state.movieModalReducer.movieModalTrunc,
 		movies: state.firebaseDbReducer.movies,
+		notificationContent: state.notificationReducer.content,
+		notificationType: state.notificationReducer.type,
+		notificationShow: state.notificationReducer.show,
 		posters: state.firebaseDbReducer.posters,
 		movieTitles: state.firebaseDbReducer.movieTitles
-
-		// errorMsgs: state.regErrReducer.errorMsgs,
-		// isLoggedInCheck: state.checkSession.isLoggedIn,
-		// CheckSeshUserID: state.checkSession.sessionUserID,
-		// CheckSeshUser: state.checkSession.sessionUser,
-		// showModal: state.modalReducer.showModal,
-		// loginModal: state.modalReducer.loginModal,
-		// teamModal: state.modalReducer.teamModal,
-      //
-		// // loggedInUser: state.loginReducer.user,
-		// team: {
-		// 	teamname: state.teamCreateReducer.teamnames,
-		// 	tech: state.teamCreateReducer.techs,
-		// 	description: state.teamCreateReducer.descriptions
-		// },
-		// todos: state.todosReducer.todos
-		// // allteams: state.teamUpdateReducer.teams,
 
 
 	};

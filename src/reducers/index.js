@@ -10,6 +10,7 @@ import { loginReducer } from "./loginReducer";
 import { tmdbReducer } from "./tmdbReducer";
 import { movieModalReducer } from "./movieModalReducer";
 import { firebaseDbReducer } from "./firebaseDbReducer";
+import { notificationReducer } from "./notificationReducer";
 
 
 
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
 	movieModalReducer,
 	tmdbReducer,
 	firebaseDbReducer,
+	notificationReducer,
 	routing: routerReducer
 });
 export default rootReducer;
