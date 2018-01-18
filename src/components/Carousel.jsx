@@ -25,7 +25,7 @@ class Carousel extends Component {
             <CoverFlow
               imagesArr={this.props.data}
               direction="horizontal"
-              width="100%"
+              width="100vw"
               height="400"
               itemRatio="32:48"
               background="rgba(0, 0, 0, 0)"
