@@ -15,11 +15,12 @@ class Main extends Component {
     return (
 
       <div className="Main">
-			<Header
-        {...this.props}
-
-       />
-       <Notification {...this.props} />
+			<div className='headerHolder'>
+            <Header {...this.props} />
+         </div>
+         <div className='notificationHolder'>
+            <Notification {...this.props} />
+         </div>
 
 
 

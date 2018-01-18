@@ -30,6 +30,7 @@ class Carousel extends Component {
               itemRatio="32:48"
               background="rgba(0, 0, 0, 0)"
               labelsArr={this.props.labels}
+              handleSelect={(index) => {console.log(this.props.labels[index]);}}
             />
           </div>
 
