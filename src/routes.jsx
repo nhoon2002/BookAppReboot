@@ -27,6 +27,9 @@ fire.auth().onAuthStateChanged(firebaseUser => {
 }
 );
 
+
+
+
 const theRoutes = (
 	<Provider store={store}>
 	  	<Router history={history}>

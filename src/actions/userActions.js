@@ -32,36 +32,77 @@ export function hideNotification() {
 
 	}
 }
+export const getSnapshot = (user, dispatch) => {
 
-export function retrieveSnapshot(user) {
-	return function(dispatch) {
-		fire.database().ref(`users/${user}/movies`).once('value', snapshot =>  {
-			console.log(snapshot.val());
-			if(snapshot.val() == null){
-				console.log('Snapshot returned null.');
-				dispatch({type: 'NOTIFYING', payload: {type: 'warning', content: 'Try adding some movies to your library first!'}})
+	fire.database().ref(`users/${user}/movies`).once('value').then(function(snapshot) {
+		var dats = Object.values(snapshot.val());
+		// this.setState({data:dats}) TODO: make this a userActions thing.
 
-			} else {
-
-				var dats = Object.values(snapshot.val());
-				// this.setState({data:dats}) TODO: make this a userActions thing.
-
-				var posters = dats.map(movie => `https://image.tmdb.org/t/p/w320${movie.details.poster_path}`)
-				console.log('Posters: %s', posters);
-				var movieTitles = dats.map(movie => movie.details.original_title)
-				console.log('Titles: %s', movieTitles);
-				dispatch({ type: 'FB_SNAP_RETRIEVED', payload: {movies: dats, posters: posters, movieTitles: movieTitles}})
-
-			}
-
-
+		var posters = dats.map(movie => `https://image.tmdb.org/t/p/w320${movie.details.poster_path}`)
+		console.log('Posters: %s', posters);
+		var movieTitles = dats.map(movie => movie.details.original_title)
+		var movieIds = dats.map(movie => movie.details.id)
+		console.log('Titles: %s', movieTitles);
+		console.log('Movie Ids: %s', movieIds);
+		dispatch({ type: 'FB_SNAP_RETRIEVED', payload: {movies: dats, posters: posters, movieTitles: movieTitles, movieIds: movieIds}})
 
 	})
+}
+
+
+export const retrieveSnapshot = (user) => {
+	console.log('running retrieve');
+	return function(dispatch) { fire.database().ref(`users/${user}/movies`).once('value', snapshot =>  {
+		console.log(snapshot.val());
+		if(snapshot.val() == null){
+			console.log('Snapshot returned null.');
+			dispatch({type: 'NOTIFYING', payload: {type: 'warning', content: 'Try adding some movies to your library first!'}})
+
+		} else {
+
+			var dats = Object.values(snapshot.val());
+			// this.setState({data:dats}) TODO: make this a userActions thing.
+
+			var posters = dats.map(movie => `https://image.tmdb.org/t/p/w320${movie.details.poster_path}`)
+			console.log('Posters: %s', posters);
+			var movieTitles = dats.map(movie => movie.details.original_title)
+			var movieIds = dats.map(movie => movie.details.id)
+			console.log('Titles: %s', movieTitles);
+			console.log('Movie Ids: %s', movieIds);
+
+			dispatch({ type: 'FB_SNAP_RETRIEVED', payload: {movies: dats, posters: posters, movieTitles: movieTitles, movieIds: movieIds}})
+
+		}
+
+	})
+}
+
+}
+
+// export function updateLibrary(dats, posters, movieTitles, movieIds) {
+// 	return function(dispatch) {
+// 		dispatch( {
+// 			type: 'FB_SNAP_RETRIEVED',
+// 			payload: {
+// 				movies: dats,
+// 				posters: posters,
+// 				movieTitles: movieTitles,
+// 				movieIds: movieIds
+// 			}
+// 		})
+// 	}
+// }
+
+
+export function showMovieModal(data, val) {
+	return function(dispatch) {
+		dispatch({ type: 'MOVIEMODAL_ON', payload: {poster_path: data.poster_path, title: data.title, details: data, enabled: val }})
 	}
 }
-export function showMovieModal(data) {
+export function swapButtons(val) {
 	return function(dispatch) {
-		dispatch({ type: 'MOVIEMODAL_ON', payload: {poster_path: data.poster_path, title: data.title, details: data}})
+		dispatch({type: 'BUTTON_SWAP', payload: val})
+
 	}
 }
 
@@ -71,12 +112,17 @@ export function closeMovieModal() {
 	}
 }
 
-export function addMovieToLibrary(uid, movieID, details) {
-	return function(dispatch) {
+export const addMovieToLibrary = (uid, movieID, details) => {
+	return ((dispatch) => {
 		fire.database().ref(`users/${uid}/movies`).push({movieID: movieID, details: details});
+		getSnapshot(uid,dispatch);
+		dispatch({type: 'BUTTON_SWAP', payload: false})
 		dispatch({type: 'NOTIFYING', payload: {type: 'success', content: 'Sucessfully added movie to the Library!'}})
-	}
+	})
 }
+
+
+
 
 export function fetchQuery(query) {
 	return function(dispatch) {

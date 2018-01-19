@@ -7,7 +7,8 @@ export function movieModalReducer(
      movieModalIsOpen: false,
      movieModalCap: '',
      movieModalDetails:'',
-     movieModalTrunc:''
+     movieModalTrunc:'',
+     buttonEnabled: true
 
 
 	},
@@ -24,7 +25,8 @@ export function movieModalReducer(
         movieModalIsOpen: true,
         movieModalCap: action.payload.title,
         movieModalDetails: action.payload.details,
-        movieModalTrunc: action.payload.details.overview.substr(0,500) //characterlimit
+        movieModalTrunc: action.payload.details.overview.substr(0,500),
+        buttonEnabled: action.payload.enabled //characterlimit
 			}
 		}
     case "MOVIEMODAL_OFF": {
@@ -33,9 +35,18 @@ export function movieModalReducer(
         ...state,
         movieModalSrc: '',
         movieModalIsOpen: false,
-        movieModalCap: ''
+        movieModalCap: '',
+        movieModalDetails: '',
+        movieModalTrunc: '',
+        buttonEnabled: true
       }
 
+    }
+    case "BUTTON_SWAP": {
+      return {
+        ...state,
+        buttonEnabled: action.payload
+      }
     }
 		default: {
 			return state;

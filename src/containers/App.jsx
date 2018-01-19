@@ -21,12 +21,14 @@ function mapStateToProps (state) {
 		movieModalIsOpen: state.movieModalReducer.movieModalIsOpen,
 		movieModalDetails: state.movieModalReducer.movieModalDetails,
 		movieModalTrunc: state.movieModalReducer.movieModalTrunc,
+		buttonEnabled: state.movieModalReducer.buttonEnabled,
 		movies: state.firebaseDbReducer.movies,
 		notificationContent: state.notificationReducer.content,
 		notificationType: state.notificationReducer.type,
 		notificationShow: state.notificationReducer.show,
 		posters: state.firebaseDbReducer.posters,
-		movieTitles: state.firebaseDbReducer.movieTitles
+		movieTitles: state.firebaseDbReducer.movieTitles,
+		movieIds: state.firebaseDbReducer.movieIds
 
 
 	};

@@ -6,7 +6,8 @@ export function firebaseDbReducer(
      retrieved: false,
      movies: [],
      posters: [],
-     movieTitles: []
+     movieTitles: [],
+     movieIds: []
 
 	},
    action) {
@@ -21,7 +22,8 @@ export function firebaseDbReducer(
 				retrieved: true,
         movies: action.payload.movies,
         posters: action.payload.posters,
-        movieTitles: action.payload.movieTitles
+        movieTitles: action.payload.movieTitles,
+        movieIds: action.payload.movieIds
 			}
 		}
 

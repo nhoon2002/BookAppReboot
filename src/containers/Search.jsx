@@ -5,7 +5,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import SearchBar from '../components/SearchBar.jsx'
 import PosterField from './PosterField.jsx'
 // import Lightbox from 'react-images';
-import MovieModal from '../components/MovieModal.jsx'
+import MovieModal from './MovieModal.jsx'
 
 
 
@@ -31,6 +31,7 @@ class Search extends Component {
 
         console.log('Current user: %s', firebase.auth().currentUser.uid);
           console.log("auth status changed: logged in as: " + firebaseUser.email);
+				 this.props.retrieveSnapshot(firebaseUser.uid);
 
        } else {
           console.log('auth status changed: not logged in');
@@ -74,7 +75,7 @@ class Search extends Component {
 						 />
 						<br/>
 
-						<PosterField showMovieModal={this.props.showMovieModal} queryData={this.props.queryData} />
+						<PosterField {...this.props} />
 
 
            </div>

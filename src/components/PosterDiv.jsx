@@ -17,7 +17,16 @@ class PosterDiv extends Component {
     this.setState(obj)
   }
   handleClick(e) {
-    this.props.showMovieModal(this.props.fullData)
+    console.log(this.props.movieIds);
+    console.log(this.props.fullData.id);
+    if(this.props.movieIds.indexOf(this.props.fullData.id) >= 0) {
+      console.log('Movie index was found.');
+        this.props.showMovieModal(this.props.fullData, false)  //disable button
+    } else {
+      console.log('Movie not found in lib');
+      this.props.showMovieModal(this.props.fullData, true)
+    } //not disabled
+
 
 
   }
