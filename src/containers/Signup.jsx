@@ -94,12 +94,12 @@ class Signup extends Component {
 
 						  	<div className="input-group signup">
 						  		 <span className="input-group-addon" id="basic-addon1"></span>
-						  		 <input type="text" ref="password" className="form-control" placeholder="Enter a password" />
+						  		 <input type="password" ref="password" className="form-control" placeholder="Enter a password" />
 						  	</div>
 
 						  	<div className="input-group signup">
 						  		 <span className="input-group-addon" id="basic-addon1"></span>
-						  		 <input type="text" ref="confirm" className="form-control" placeholder="Confirm your password" />
+						  		 <input type="password" ref="confirm" className="form-control" placeholder="Confirm your password" />
 						  	</div>
 
 						  	 {/* <div className="form-check">

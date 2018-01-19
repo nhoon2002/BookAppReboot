@@ -15,6 +15,7 @@ export function sampleAxiosToTmdb() {
 	}
 }
 export function showNotification(content, type) {
+	console.log('Triggered notification action.');
 	// setTimeout(() => hideNotification(), 3000);
 	return function(dispatch) {
 		dispatch({type: 'NOTIFYING', payload: {type: type, content: content}})
@@ -36,13 +37,23 @@ export function retrieveSnapshot(user) {
 	return function(dispatch) {
 		fire.database().ref(`users/${user}/movies`).once('value', snapshot =>  {
 			console.log(snapshot.val());
-			var dats = Object.values(snapshot.val());
-			// this.setState({data:dats}) TODO: make this a userActions thing.
-			var posters = dats.map(movie => `https://image.tmdb.org/t/p/w320/${movie.details.poster_path}`)
-			console.log('Posters: %s', posters);
-			var movieTitles = dats.map(movie => movie.details.original_title)
-			console.log('Titles: %s', movieTitles);
-			dispatch({ type: 'FB_SNAP_RETRIEVED', payload: {movies: dats, posters: posters, movieTitles: movieTitles}})
+			if(snapshot.val() == null){
+				console.log('Snapshot returned null.');
+				dispatch({type: 'NOTIFYING', payload: {type: 'warning', content: 'Try adding some movies to your library first!'}})
+
+			} else {
+
+				var dats = Object.values(snapshot.val());
+				// this.setState({data:dats}) TODO: make this a userActions thing.
+
+				var posters = dats.map(movie => `https://image.tmdb.org/t/p/w320${movie.details.poster_path}`)
+				console.log('Posters: %s', posters);
+				var movieTitles = dats.map(movie => movie.details.original_title)
+				console.log('Titles: %s', movieTitles);
+				dispatch({ type: 'FB_SNAP_RETRIEVED', payload: {movies: dats, posters: posters, movieTitles: movieTitles}})
+
+			}
+
 
 
 	})

@@ -94,10 +94,10 @@ div.social-wrap {
 }
 div.registerBox {
    /* background-color: rgba(255, 255, 255, 0.35); */
-   background-color: black;
+   /* background-color: black; */
    /* border: 5px solid #222; */
    text-align: center;
-   margin: 5% auto;
+   /* margin: 5% auto; */
    /* padding-bottom: 8%; */
 
 }
@@ -371,7 +371,7 @@ p.s:hover:after {
   text-align: center;
   width: 100vw;
   top: 0;
-  opacity:0.9;
+  opacity:0.99;
 
 }
 .modal-lightbox {
@@ -468,9 +468,13 @@ p.s:hover:after {
   .modalButtonsHolder {
     padding-right: 30px;
     padding-left: 30px;
+    position: fixed;
+    bottom: 0;
+    display: block;
   }
   .modalPosterHolder {
      display: none;
+
  }
   .modal-content {
      min-height: 105%;

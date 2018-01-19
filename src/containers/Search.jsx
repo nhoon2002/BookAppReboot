@@ -70,6 +70,7 @@ class Search extends Component {
             <SearchBar
 							sampleAxiosToTmdb={this.props.sampleAxiosToTmdb} fetchQuery={this.props.fetchQuery}
 							queryData={this.props.queryData}
+							showNotification={this.props.showNotification}
 						 />
 						<br/>
 

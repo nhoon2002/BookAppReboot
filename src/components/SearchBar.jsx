@@ -20,6 +20,7 @@ class SearchBar extends Component {
        console.log('Criteria met: keyword = %s', key);
 
 
+
       //  this.setState({qData: this.props.queryData})
 
 
@@ -33,6 +34,7 @@ class SearchBar extends Component {
          this.props.fetchQuery(key);
        } else if (key.length < 2) {
          console.log('Must Enter at least 2 characters');
+         this.props.showNotification("Must Enter at least 2 characters!", 'danger')
        }
     }
 
