@@ -30,7 +30,8 @@ body {
    /*font-family: 'Gloria Hallelujah', cursive;*/
    font-family: 'Cormorant Garamond', cursive;
    background-color: black;
-   background-image: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0.75) 100%), url('../images/movieCollage.jpg');
+   /* background-image: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%,rgba(0,0,0,0.75) 100%), url('../images/movieCollage.jpg'); */
+   background-image: url('../images/edit_movieCollage.jpg');
    /*padding-top: 50%;
    padding-bottom: 50%;*/
    background-repeat: repeat;
@@ -46,12 +47,13 @@ body {
 
 
 body.library {
-  /* background-image: url('../images/shelfResized.jpg'); */
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('../images/shelfResized.jpg');
+  background-image: url('../images/edit_shelfResized.jpg');
+  /* background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('../images/shelfResized.jpg'); */
 }
 
 body.search {
-   background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('../images/searchResized.jpg');
+  background-image: url('../images/searchResized.jpg');
+   /* background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('../images/searchResized.jpg'); */
 }
 /*Home.jsx*/
 .TestLeft {
@@ -82,7 +84,7 @@ div.logo-center {
 
 div.social-wrap {
    /* background-color: rgba(255, 255, 255, 0.35); */
-   background-color: black;
+   /* background-color: black; */
 
    /* border: 5px solid #222; */
    text-align: center;
@@ -337,6 +339,13 @@ p.s:hover:after {
 .posterDiv {
   display: inline-block;
   margin: 10px;
+}
+@media (min-width: 1600px) {
+  div.social-wrap {
+    padding-left:5%;
+    padding-right:5%;
+
+  }
 }
 
 @media (min-width: 990px) {
