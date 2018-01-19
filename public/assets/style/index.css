@@ -360,6 +360,9 @@ p.s:hover:after {
    div.social-wrap button {
       font-size: 12px;
    }
+   input, select, textarea {
+    font-size: 16px;
+  }
 }
 /* //notification */
 .alert {
