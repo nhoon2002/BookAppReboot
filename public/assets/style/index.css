@@ -106,9 +106,25 @@ div.registerBox {
 }
 .btnSignup {
    margin: 2%;
-
+}
+/* .removeButton {
+   float: left;
+} */
+.invisible {
+   display: none;
+}
+.removeButton {
+   float: right;
+   color: white;
+   border-color: #ffffff7d !important;
+   background-color: #ffffff00 !important;
+}
+.removeButtonSpan {
+   font-size: 18px;
+   font-weight: 600;
 
 }
+
 div.social-wrap button {
 
    text-align: center;

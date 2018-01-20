@@ -5,31 +5,41 @@ class Carousel extends Component {
    constructor(props) {
       super(props)
 
-      this.state = {};
+      this.state = {labelsArr: []};
 
       this.handleClick = this.handleClick.bind(this);
+      this.handleButton = this.handleButton.bind(this);
+
 
    }
-   handleClick(e,index) {
-     e.preventDefault();
-     console.log(this.props.movies[index])
 
-     fire.database().ref().child('users/').child(`${fire.auth().currentUser.uid}/`).child('movies/').once('value', snapshot => {
-       var keys = Object.keys(snapshot.val())
-       var targetKey = keys[index];
-       console.log(targetKey);
-       if(keys.length > 3) {
-         console.log('REMOVING FROM CAROUSEL');
-         this.props.removeMovieFromLibrary(fire.auth().currentUser.uid, targetKey);
-       } else this.props.showNotification('Must have at least 3 movies in Library', 'danger');
-     });
+   handleButton(movie) {
+      console.log('BUTTON CLICKED');
+      console.log(movie.details.id);
+      // console.log(this.props.movies[index])
+
+      fire.database().ref(`users/${fire.auth().currentUser.uid}/movies/`)
+         .orderByChild("movieID")
+         .equalTo(movie.details.id)
+         .once('value', snapshot => {
+             var key = Object.keys(snapshot.val())[0]
+             console.log(key);
+             this.props.removeMovieFromLibrary(fire.auth().currentUser.uid, key);
+
+      });
+   }
+   handleClick(index) {
+
+     // e.preventDefault();
+     console.log('HANDLE CLICKED %s', index);
+
    }
 
 
    render() {
      let movies = this.props.movies;
      let posters = movies.map(movie =>  `https://image.tmdb.org/t/p/w320${movie.details.poster_path}`) || null;
-     let movieTitles = movies.map(movie => <button onClick={() => console.log('hi')}>{movie.details.original_title}</button>) || null;
+     let buttonsArray = movies.map((movie, i) => <button className='btn btn-danger removeButton' key={i} onClick={() => this.handleButton(movie)}><span id='removeButtonSpan'>x</span></button>) || null;
 
       return (
         <div>
@@ -47,12 +57,13 @@ class Carousel extends Component {
               height="400"
               itemRatio="32:48"
               background="rgba(0, 0, 0, 0)"
-              labelsArr={movieTitles}
-              handleSelect={(e,index) => this.handleClick(index)}
+              labelsArr={buttonsArray}
+              handleSelect={(index) => this.handleClick(index)}
             />
           </div>
 
-          </div>
+
+         </div>
         :
         <div className='row'>
           <div className='col-md-2 col-lg-2 col-sm-1'></div>
