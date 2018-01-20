@@ -17,16 +17,17 @@ class Carousel extends Component {
       console.log('BUTTON CLICKED');
       console.log(movie.details.id);
       // console.log(this.props.movies[index])
+      if(this.props.movies.length > 3) {
+         fire.database().ref(`users/${fire.auth().currentUser.uid}/movies/`)
+            .orderByChild("movieID")
+            .equalTo(movie.details.id)
+            .once('value', snapshot => {
+                var key = Object.keys(snapshot.val())[0]
+                console.log(key);
+                this.props.removeMovieFromLibrary(fire.auth().currentUser.uid, key);
 
-      fire.database().ref(`users/${fire.auth().currentUser.uid}/movies/`)
-         .orderByChild("movieID")
-         .equalTo(movie.details.id)
-         .once('value', snapshot => {
-             var key = Object.keys(snapshot.val())[0]
-             console.log(key);
-             this.props.removeMovieFromLibrary(fire.auth().currentUser.uid, key);
-
-      });
+         });
+      } else this.props.showNotification('You should have at least 3 movies in your library!', 'danger')
    }
    handleClick(index) {
 

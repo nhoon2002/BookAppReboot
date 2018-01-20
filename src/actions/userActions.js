@@ -188,8 +188,8 @@ export function checkSession() {
 	return function(dispatch) {
 
 		let firebaseUser = firebase.auth().currentUser;
-		getSnapshot(firebaseUser.uid, dispatch)
 		if (firebaseUser) {
+			getSnapshot(firebaseUser.uid, dispatch)
 			dispatch({ type: 'SESSION_EXISTS', payload: firebaseUser})
 			console.log('browserhistory:', browserHistory);
 			console.log('Auth status changed: logged in as: ' + firebaseUser.email);
