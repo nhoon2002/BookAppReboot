@@ -35,17 +35,21 @@ export function hideNotification() {
 export const getSnapshot = (user, dispatch) => {
 
 	firebase.database().ref(`users/${user}/movies`).once('value').then(function(snapshot) {
-		var dats = Object.values(snapshot.val());
-		// this.setState({data:dats}) TODO: make this a userActions thing.
+		if(snapshot.val()) {
+			var dats = Object.values(snapshot.val());
+			// this.setState({data:dats}) TODO: make this a userActions thing.
 
-		var posters = dats.map(movie => `https://image.tmdb.org/t/p/w320${movie.details.poster_path}`)
-		console.log('Posters: %s', posters);
-		var movieTitles = dats.map(movie => movie.details.original_title)
-		var movieIds = dats.map(movie => movie.details.id)
-		console.log('Titles: %s', movieTitles);
-		console.log('Movie Ids: %s', movieIds);
-		dispatch({ type: 'FB_SNAP_RETRIEVED', payload: {movies: dats, posters: posters, movieTitles: movieTitles, movieIds: movieIds}})
+			var posters = dats.map(movie => `https://image.tmdb.org/t/p/w320${movie.details.poster_path}`)
+			console.log('Posters: %s', posters);
+			var movieTitles = dats.map(movie => movie.details.original_title)
+			var movieIds = dats.map(movie => movie.details.id)
+			console.log('Titles: %s', movieTitles);
+			console.log('Movie Ids: %s', movieIds);
+			dispatch({ type: 'FB_SNAP_RETRIEVED', payload: {movies: dats, posters: posters, movieTitles: movieTitles, movieIds: movieIds}})
 
+		} else {
+			dispatch({ type: 'FB_SNAP_RETRIEVED', payload: {movies: [], posters: [], movieTitles: [], movieIds: []}})
+		}
 	})
 }
 
