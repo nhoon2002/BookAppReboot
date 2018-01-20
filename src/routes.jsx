@@ -20,7 +20,7 @@ import {checkSession} from './actions/userActions.js';
 
 fire.auth().onAuthStateChanged(firebaseUser => {
 
-	store.dispatch(checkSession(firebaseUser));
+	store.dispatch(checkSession());
 	if(firebaseUser) console.log('User: %s', firebaseUser.uid);
 	else console.log('User: %s', null);
 

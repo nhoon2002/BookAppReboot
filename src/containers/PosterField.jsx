@@ -17,6 +17,7 @@ class PosterField extends Component {
 
 
 
+
   render() {
 
     const photoURL = 'https://image.tmdb.org/t/p/w320/';

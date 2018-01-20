@@ -13,35 +13,18 @@ class Signin extends Component {
 
 	  this.handleForm = this.handleForm.bind(this);
 
-	  this.logOut = this.logOut.bind(this);
 
 
 	}
 
 	componentDidMount() {
-		// When an authentication state has been changed...
-		fire.auth().onAuthStateChanged(firebaseUser => {
-
-
-			 this.props.checkSession(firebaseUser);
-
-		   if(firebaseUser) { //if user is logged in...
-
-				console.log('Current user: %s', fire.auth().currentUser.uid);
-		      console.log("auth status changed: logged in as: " + firebaseUser.email);
-
-		   } else {
-		      console.log('auth status changed: not logged in');
-
-		   }
-
-		});
+		if(fire.auth().currentUser) {
+			console.log('User is already logged in.');
+			this.props.router.push('/')
+		}
 	}
 
 
-	logOut() {
-		this.props.signOut()
-	}
 
 
 	handleForm(e){

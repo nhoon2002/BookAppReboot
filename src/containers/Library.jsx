@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router';
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
 import fire from '../fire.js'
 import PosterField2 from './PosterField2.jsx';
 import Carousel from '../components/Carousel.jsx';
@@ -18,35 +18,13 @@ class Library extends Component {
 
 	}
 	componentWillMount() {
-		firebase.auth().onAuthStateChanged(firebaseUser => {
 
 
-       this.props.checkSession(firebaseUser); //NOTE: checkSession() must be called first in order to be able to summon {this.props.currentUser}
 
-       if(firebaseUser) { //if user is logged in...
-
-        	console.log('Current user: %s', firebase.auth().currentUser.uid);
-          console.log("auth status changed: logged in as: " + firebaseUser.email);
-					var user = firebase.auth().currentUser.uid;
-
-					//make this a 'userActions' thing...
-					// fire.database().ref(`users/${firebase.auth().currentUser.uid}/movies`).once('value', function(snapshot) {
-						this.props.retrieveSnapshot(user);
-					//
-					// });
-
-       } else {
-          console.log('auth status changed: not logged in');
-          this.props.router.push('/')
-          console.log('rerouted to home');
-       }
-     })
 
 	}
   componentDidMount() {
     document.body.classList.add('library');
-    // When an authentication state has been changed...
-
 
 
 
@@ -60,7 +38,7 @@ class Library extends Component {
         return (
 
 					<div>
-						<Carousel data={this.props.posters} labels={this.props.movieTitles}/>
+						<Carousel movies = {this.props.movies} posters={this.props.posters} movieTitles={this.props.movieTitles} removeMovieFromLibrary = {this.props.removeMovieFromLibrary} showNotification = {this.props.showNotification}/>
 						{/* <PosterField2 data={this.props.movies} /> */}
 
 

@@ -4,7 +4,7 @@ import { browserHistory } from "react-router";
 import * as firebase from 'firebase';
 import promise from 'es6-promise'
 promise.polyfill();
-import fire from '../fire.js'
+// import fire from '../fire.js'
 
 const apiKey = require('../../controller/config.js').api
 
@@ -17,13 +17,13 @@ export function sampleAxiosToTmdb() {
 export function showNotification(content, type) {
 	console.log('Triggered notification action.');
 	// setTimeout(() => hideNotification(), 3000);
-	return function(dispatch) {
+	return ((dispatch) => {
 		dispatch({type: 'NOTIFYING', payload: {type: type, content: content}})
 
 
 
 
-	}
+	})
 }
 
 export function hideNotification() {
@@ -34,7 +34,7 @@ export function hideNotification() {
 }
 export const getSnapshot = (user, dispatch) => {
 
-	fire.database().ref(`users/${user}/movies`).once('value').then(function(snapshot) {
+	firebase.database().ref(`users/${user}/movies`).once('value').then(function(snapshot) {
 		var dats = Object.values(snapshot.val());
 		// this.setState({data:dats}) TODO: make this a userActions thing.
 
@@ -52,7 +52,7 @@ export const getSnapshot = (user, dispatch) => {
 
 export const retrieveSnapshot = (user) => {
 	console.log('running retrieve');
-	return function(dispatch) { fire.database().ref(`users/${user}/movies`).once('value', snapshot =>  {
+	return function(dispatch) { firebase.database().ref(`users/${user}/movies`).once('value', snapshot =>  {
 		console.log(snapshot.val());
 		if(snapshot.val() == null){
 			console.log('Snapshot returned null.');
@@ -114,10 +114,20 @@ export function closeMovieModal() {
 
 export const addMovieToLibrary = (uid, movieID, details) => {
 	return ((dispatch) => {
-		fire.database().ref(`users/${uid}/movies`).push({movieID: movieID, details: details});
+		firebase.database().ref(`users/${uid}/movies`).push({movieID: movieID, details: details});
 		getSnapshot(uid,dispatch);
 		dispatch({type: 'BUTTON_SWAP', payload: false})
 		dispatch({type: 'NOTIFYING', payload: {type: 'success', content: 'Sucessfully added movie to the Library!'}})
+	})
+}
+export const removeMovieFromLibrary = (uid, targetKey) => {
+	console.log('beforeDispatch');
+	return ((dispatch) => {
+		console.log('inDispatch');
+		firebase.database().ref(`users/${uid}/movies/`).child(targetKey).remove();
+		getSnapshot(uid,dispatch);
+		// dispatch({type: 'BUTTON_SWAP', payload: false})
+		dispatch({type: 'NOTIFYING', payload: {type: 'success', content: 'Sucessfully removed movie from the Library!'}})
 	})
 }
 
@@ -169,18 +179,24 @@ export function signOut() {
 			firebase.auth().signOut(); //signs out current user
 			browserHistory.push('/');
 			dispatch({ type: 'SESSION_NULL', payload: ""});
+			dispatch({ type: 'LOGGED_OUT_CLEAR', payload: ""});
 
 		}
 
  }
-export function checkSession(user) {
+export function checkSession() {
 	return function(dispatch) {
-		if (user) {
-			dispatch({ type: 'SESSION_EXISTS', payload: user})
+
+		let firebaseUser = firebase.auth().currentUser;
+		getSnapshot(firebaseUser.uid, dispatch)
+		if (firebaseUser) {
+			dispatch({ type: 'SESSION_EXISTS', payload: firebaseUser})
 			console.log('browserhistory:', browserHistory);
+			console.log('Auth status changed: logged in as: ' + firebaseUser.email);
 		} else {
 			dispatch({ type: 'SESSION_NULL', payload: ""})
-			console.log('current:', browserHistory.getCurrentLocation().pathname);
+			console.log('Auth status changed: not logged in.');
+			browserHistory.push('/');
 
 
 			}
@@ -210,6 +226,7 @@ export function createAccount(inputs) {
   					// password: inputs.password
   				});
           dispatch({ type: 'CREATE_ACCOUNT_SUCCESS', payload: { details: inputs, detailsFB: user } });
+					dispatch({ type: 'SESSION_EXISTS', payload: user})
 					browserHistory.push('/');
 
 
@@ -217,6 +234,7 @@ export function createAccount(inputs) {
   			.catch(function (error) {
   				console.log(error);
   				dispatch({ type: 'CREATE_ACCOUNT_ERROR', payload: error.message})
+					dispatch({type: 'NOTIFYING', payload: {type: 'danger', content: error.message}})
   			});
 
 
@@ -255,6 +273,7 @@ export function SigninGoogle() {
 
 		  console.log("google auth details:", user);
 		  dispatch({ type: 'GOOGLE_CREATE_ACCOUNT_SUCESSS', payload: user});
+			dispatch({type: 'SESSION_EXISTS', payload: user});
 		  browserHistory.push('/');
 		  // ...
 		}).catch(function(error) {
@@ -272,49 +291,57 @@ export function SigninGoogle() {
 	}
 }
 export function SigninFacebook() {
-	return function(dispatch) {
-		dispatch({ type: 'FACEBOOK_CREATE_ACCOUNT', payload: ""});
-		var provider = new firebase.auth.FacebookAuthProvider();
-		firebase.auth().signInWithPopup(provider).then(function(result) {
-		  // This gives you a Facebook Access Token. You can use it to access the FB API.
-		  var token = result.credential.accessToken;
-		  // The signed-in user info.
-			var dbRef = firebase.database().ref(`users/${user.uid}/`)
-			dbRef.once('value').then(function(snapshot) {
-				if(!snapshot.val()) {
-					console.log('User database info does not exist yet. Setting initial object...');
-					dbRef.set({
-						email: user.email,
-						name: user.displayName,
+ return function(dispatch) {
+	 dispatch({ type: 'FACEBOOK_CREATE_ACCOUNT', payload: ""});
+	 var provider = new firebase.auth.FacebookAuthProvider();
+	 firebase.auth().signInWithPopup(provider).then(function(result) {
+		 // This gives you a Facebook Access Token. You can use it to access the FB API.
+		 var token = result.credential.accessToken;
+		 // The signed-in user info.
+		 var user = result.user;
+		 console.log("facebook auth details:", user);
+		 dispatch({ type: 'FACEBOOK_CREATE_ACCOUNT_SUCESSS', payload: user});
+		 //INITIALIZE FIREBASE USER DATABASE
+		 const dbRef = firebase.database().ref(`users/${user.uid}/`);
+		 // console.log('WOOOOOOO');
+		 dbRef.once('value').then(function(snapshot) {
+			 console.log(snapshot.val());
+			 if(!snapshot.val()) {
+				 console.log('User database info does not exist yet. Setting the initial object...');
+				 dbRef.set({
+					 email: user.email,
+					 name: user.displayName
+				 })
+				 .then(
+					 function(success) {
+						 console.log('DBREFSET SUCCESS');
+					 }
+				 )
+				 .catch(
+					 function(error) {
+						 console.log('Encounted error: dbRef');
+					 }
+				 )
+			 }
+		 });
 
-					})
-					.then(
-						function(success) {
-							console.log('DBREFSET SUCCESS');
-						}
-					)
-					.catch(function(error) {
-						console.log('Encounted error: dbREF', error);
-					})
-				}
-			})
-		  console.log("facebook auth details:", user);
-		  dispatch({ type: 'FACEBOOK_CREATE_ACCOUNT_SUCESSS', payload: user});
-		  browserHistory.push('/');
-		  // ...
-		}).catch(function(error) {
-		  // Handle Errors here.
-		  var errorCode = error.code;
-		  var errorMessage = error.message;
-		  console.log(errorMessage);
-		  // The email of the user's account used.
-		  var email = error.email;
-		  // The firebase.auth.AuthCredential type that was used.
-		  var credential = error.credential;
-		  dispatch({ type: 'FACEBOOK_CREATE_ACCOUNT_ERROR', payload: errorMessage});
-		  // ...
-		});
-	}
+
+		 dispatch({ type: 'SESSION_EXISTS', payload: user});
+		 browserHistory.push('/');
+		 // ...
+	 }).catch(function(error) {
+		 // Handle Errors here.
+		 var errorCode = error.code;
+		 var errorMessage = error.message;
+		 console.log(errorMessage);
+		 // The email of the user's account used.
+		 var email = error.email;
+		 // The firebase.auth.AuthCredential type that was used.
+		 var credential = error.credential;
+		 dispatch({ type: 'FACEBOOK_CREATE_ACCOUNT_ERROR', payload: errorMessage});
+		 // ...
+	 });
+ }
 }
 
 export function signinAccount(inputs) {

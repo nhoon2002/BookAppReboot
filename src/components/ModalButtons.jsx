@@ -16,8 +16,7 @@ class ModalButtons extends Component {
 
 
   handleForm(e){
-    // this.close();
-    // this.setState({enabled:false})
+
     var uid = this.props.currentUser.uid;
     var movieID = this.props.movieModalDetails.id;
     var details = this.props.movieModalDetails;

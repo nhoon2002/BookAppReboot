@@ -31,6 +31,14 @@ export function tmdbReducer(
       }
 
     }
+    case "LOGGED_OUT_CLEAR": {
+      return {
+        ...state,
+        dataReturned: '',
+        queryString: '',
+        queryError: false
+      }
+    }
 		default: {
 			return state;
 		}

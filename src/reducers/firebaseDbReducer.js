@@ -27,6 +27,7 @@ export function firebaseDbReducer(
 			}
 		}
 
+
 		default: {
 			return state;
 		}

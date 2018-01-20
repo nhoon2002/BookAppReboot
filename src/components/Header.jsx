@@ -2,7 +2,7 @@ import connect from 'react-redux';
 import React from 'react';
 import {Nav, Navbar, NavItem, MenuItem, NavDropdown, Image} from 'react-bootstrap';
 import { Link } from 'react-router';
-import * as firebase from 'firebase';
+import fire from '../fire.js';
 
 class Header extends React.Component {
 
@@ -12,27 +12,23 @@ class Header extends React.Component {
     this.state = {photoURL: 'https://placehold.it/100x100'};
   }
   componentDidMount() {
-     // When an authentication state has been changed...
-     firebase.auth().onAuthStateChanged(firebaseUser => {
+    fire.auth().onAuthStateChanged(firebaseUser => {
+
+      if(firebaseUser) { //if user is logged in...
+
+         this.setState({photoURL: firebaseUser.providerData[0].photoURL || 'http://www.kiet.edu/images/default.jpg'});
+         console.log(firebaseUser);
+
+      } else {
+         console.log('HEADER: NOT LOGGED IN!!!!!!');
+
+      }
 
 
-        this.props.checkSession(firebaseUser);
-        // this.setState({[photoURL: firebaseUser]})
 
-        if(firebaseUser) { //if user is logged in...
-           this.setState({photoURL: firebaseUser.providerData[0].photoURL || 'http://www.kiet.edu/images/default.jpg'});
-           console.log(firebaseUser);
 
-           console.log('Current user: %s', firebase.auth().currentUser.uid);
-           console.log("auth status changed: logged in as: " + firebaseUser.email);
-
-        } else {
-           console.log('auth status changed: not logged in');
-
-        }
-
-     });
- }
+    });
+  }
 
 
   render() {

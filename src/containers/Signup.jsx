@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router';
-import * as firebase from 'firebase';
+import fire from '../fire.js';
 import {ButtonToolbar, Button} from 'react-bootstrap';
 
 
@@ -12,44 +12,17 @@ class Signup extends Component {
 
 
 	  this.handleForm = this.handleForm.bind(this);
-	//   this.sample = this.sample.bind(this);
-	//   this.sampleD = this.sampleD.bind(this);
-	  this.logOut = this.logOut.bind(this);
 
-	//   this.createAccount = this.createAccount.bind(this);
 
 	}
 
 	componentDidMount() {
-		// When an authentication state has been changed...
-		firebase.auth().onAuthStateChanged(firebaseUser => {
-
-
-			 this.props.checkSession(firebaseUser);
-
-		   if(firebaseUser) { //if user is logged in...
-
-				console.log('Current user: %s', firebase.auth().currentUser.uid);
-		      console.log("auth status changed: logged in as: " + firebaseUser.email);
-
-		   } else {
-		      console.log('auth status changed: not logged in');
-
-		   }
-
-		});
+		if(fire.auth().currentUser) {
+			console.log('User is already logged in.');
+			this.props.router.push('/')
+		}
 	}
 
-	// sample() {
-	// 	this.props.sampleAction()
-	// }
-	// sampleD() {
-	// 	this.props.sampleActionDispatch()
-	// }
-
-	logOut() {
-		this.props.signOut()
-	}
 
 
 	handleForm(e){

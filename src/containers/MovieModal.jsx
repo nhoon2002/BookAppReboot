@@ -18,16 +18,21 @@ class MovieModal extends Component {
 
     }
 
+    this.close = this.close.bind(this)
 
 
 
   }
 
   componentWillReceiveProps() {
+    console.log('Received Prop');
     this.setState({key: 2})
   }
 
 
+  close() {
+    this.props.closeMovieModal()
+  }
 
 
 
