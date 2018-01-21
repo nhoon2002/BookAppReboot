@@ -226,7 +226,7 @@ export function createAccount(inputs) {
   				//If successful creation, creates the following children to the user branch (labeled by uid)
   				firebase.database().ref("users").child(user.uid).set({
   					email: inputs.email,
-  					username: inputs.username
+  					name: inputs.username
   					// password: inputs.password
   				});
           dispatch({ type: 'CREATE_ACCOUNT_SUCCESS', payload: { details: inputs, detailsFB: user } });
