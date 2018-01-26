@@ -39,7 +39,7 @@ class Carousel extends Component {
 
    render() {
      let movies = this.props.movies;
-     let posters = movies.map(movie =>  `https://image.tmdb.org/t/p/w320${movie.details.poster_path}`) || null;
+     let posters = movies.map(movie =>  `https://image.tmdb.org/t/p/original${movie.details.poster_path}`) || `https://placehold.it/320x480?text=${movie.details.title}`;
      let buttonsArray = movies.map((movie, i) => <button className='btn btn-danger removeButton' key={i} onClick={() => this.handleButton(movie)}><span id='removeButtonSpan'>x</span></button>) || null;
 
       return (
