@@ -154,7 +154,9 @@ button#chaehwa {
 }
 
 .moviePoster {
-   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.85)
+   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.85);
+   max-width: 320px;
+
 }
 .homeImgCircle {
    width: 100px;
