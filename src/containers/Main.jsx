@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from '../components/Header.jsx';
-import Notification from '../components/Notification.jsx';
+import Header from '../components/Common/Header.jsx';
+import Notification from '../components/Common/Notification.jsx';
 
 
 // function getNiceName(routes) {

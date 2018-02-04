@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import {Link} from 'react-router';
 import fire from '../fire.js';
 import { Grid, Row, Col } from 'react-bootstrap';
-import SearchBar from '../components/SearchBar.jsx'
+import SearchBar from '../components/Search/SearchBar.jsx'
 import PosterField from './PosterField.jsx'
-// import Lightbox from 'react-images';
 import MovieModal from './MovieModal.jsx'
 
 

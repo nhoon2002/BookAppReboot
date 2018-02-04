@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
-import PosterDiv from '../components/PosterDiv.jsx';
+import PosterDiv from '../components/Search/PosterDiv.jsx';
 
 
 class PosterField extends Component {

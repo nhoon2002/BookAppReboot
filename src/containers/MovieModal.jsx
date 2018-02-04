@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 import fire from '../fire.js'
-import ModalButtons from '../components/ModalButtons.jsx';
+import ModalButtons from '../components/Search/ModalButtons.jsx';
 
 import { Button } from 'react-bootstrap';
 import { Popover } from 'react-bootstrap';
