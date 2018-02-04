@@ -4,10 +4,14 @@
 export function firebaseDbReducer(
    state = {
      retrieved: false,
-     movies: [],
-     posters: [],
-     movieTitles: [],
-     movieIds: []
+     moviesF: [],
+     postersF: [],
+     movieTitlesF: [],
+     movieIdsF: [],
+     moviesL: [],
+     postersL: [],
+     movieTitlesL: [],
+     movieIdsL: [],
 
 	},
    action) {
@@ -15,15 +19,26 @@ export function firebaseDbReducer(
 
 	switch (action.type) {
 
-		case "FB_SNAP_RETRIEVED": {
+		case "FB_SNAP_RETRIEVED_FAVORITES": {
 			console.log("Data Received from Firebase Snapshot!")
 			return {
 				...state,
 				retrieved: true,
-        movies: action.payload.movies,
-        posters: action.payload.posters,
-        movieTitles: action.payload.movieTitles,
-        movieIds: action.payload.movieIds
+        moviesF: action.payload.movies,
+        postersF: action.payload.posters,
+        movieTitlesF: action.payload.movieTitles,
+        movieIdsF: action.payload.movieIds
+			}
+		}
+		case "FB_SNAP_RETRIEVED_WISHLIST": {
+			console.log("Data Received from Firebase Snapshot!")
+			return {
+				...state,
+				retrieved: true,
+        moviesL: action.payload.movies,
+        postersL: action.payload.posters,
+        movieTitlesL: action.payload.movieTitles,
+        movieIdsL: action.payload.movieIds
 			}
 		}
 

@@ -8,7 +8,8 @@ export function movieModalReducer(
      movieModalCap: '',
      movieModalDetails:'',
      movieModalTrunc:'',
-     buttonEnabled: true
+     buttonFavoritesEnabled: true,
+     buttonWishlistEnabled: true
 
 
 	},
@@ -26,7 +27,8 @@ export function movieModalReducer(
         movieModalCap: action.payload.title,
         movieModalDetails: action.payload.details,
         movieModalTrunc: action.payload.details.overview.substr(0,500),
-        buttonEnabled: action.payload.enabled //characterlimit
+        buttonFavoritesEnabled: action.payload.enabledF,
+        buttonWishlistEnabled: action.payload.enabledL
 			}
 		}
     case "MOVIEMODAL_OFF": {
@@ -38,14 +40,21 @@ export function movieModalReducer(
         movieModalCap: '',
         movieModalDetails: '',
         movieModalTrunc: '',
-        buttonEnabled: true
+        buttonFavoritesEnabled: true,
+        buttonWishlistEnabled: true,
       }
 
     }
-    case "BUTTON_SWAP": {
+    case "BUTTON_SWAP_FAVORITES": {
       return {
         ...state,
-        buttonEnabled: action.payload
+        buttonFavoritesEnabled: action.payload
+      }
+    }
+    case "BUTTON_SWAP_WISHLIST": {
+      return {
+        ...state,
+        buttonWishlistEnabled: action.payload
       }
     }
 		default: {

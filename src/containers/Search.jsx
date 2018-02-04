@@ -23,7 +23,7 @@ class Search extends Component {
 
        if(fire.auth().currentUser) { //if user is logged in...
 				 console.log('FROM SEARCH.JSX');
-				 this.props.retrieveSnapshot(fire.auth().currentUser.uid);
+				 // this.props.retrieveSnapshot(fire.auth().currentUser.uid);
 
        } else {
 

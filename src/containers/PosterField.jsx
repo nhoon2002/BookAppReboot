@@ -35,7 +35,9 @@ class PosterField extends Component {
              <div className='col-md-12 col-lg-12 col-sm-12 coverflow'>
                {this.props.queryData.map((data,i) =>
                  <PosterDiv showMovieModal={this.props.showMovieModal} fullData={data} key={i} posterID={i} imageSrc={photoURL + data.poster_path} posterPath={data.poster_path}
-								 movieIds={this.props.movieIds}/>
+								 movieIdsF={this.props.movieIdsF}
+							   movieIdsL={this.props.movieIdsL}
+							 />
 
 
 

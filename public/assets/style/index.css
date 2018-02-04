@@ -46,7 +46,11 @@ body {
 }
 
 
-body.library {
+body.wishlist {
+  background-image: url('../images/wishlist_orig.jpg');
+  /* background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('../images/shelfResized.jpg'); */
+}
+body.favorites {
   background-image: url('../images/edit_shelfResized.jpg');
   /* background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url('../images/shelfResized.jpg'); */
 }

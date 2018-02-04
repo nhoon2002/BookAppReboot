@@ -33,8 +33,12 @@ export function hideNotification() {
 	}
 }
 export const getSnapshot = (user, dispatch) => {
+	//This function is called as a callback when user clicks button to add movie to somewhere.
+	console.log('--------------------------');
+	console.log('getSnapshot called');
+	console.log('--------------------------');
 
-	firebase.database().ref(`users/${user}/movies`).once('value').then(function(snapshot) {
+	firebase.database().ref(`users/${user}/movies/favorites`).once('value').then(function(snapshot) {
 		if(snapshot.val()) {
 			var dats = Object.values(snapshot.val());
 			// this.setState({data:dats}) TODO: make this a userActions thing.
@@ -45,18 +49,40 @@ export const getSnapshot = (user, dispatch) => {
 			var movieIds = dats.map(movie => movie.details.id)
 			console.log('Titles: %s', movieTitles);
 			console.log('Movie Ids: %s', movieIds);
-			dispatch({ type: 'FB_SNAP_RETRIEVED', payload: {movies: dats, posters: posters, movieTitles: movieTitles, movieIds: movieIds}})
+			dispatch({ type: 'FB_SNAP_RETRIEVED_FAVORITES', payload: {movies: dats, posters: posters, movieTitles: movieTitles, movieIds: movieIds}})
 
 		} else {
-			dispatch({ type: 'FB_SNAP_RETRIEVED', payload: {movies: [], posters: [], movieTitles: [], movieIds: []}})
+			dispatch({ type: 'FB_SNAP_RETRIEVED_FAVORITES', payload: {movies: [], posters: [], movieTitles: [], movieIds: []}})
+		}
+	})
+	firebase.database().ref(`users/${user}/movies/wishlist`).once('value').then(function(snapshot) {
+		if(snapshot.val()) {
+			var dats = Object.values(snapshot.val());
+			// this.setState({data:dats}) TODO: make this a userActions thing.
+
+			var posters = dats.map(movie => `https://image.tmdb.org/t/p/w320${movie.details.poster_path}`)
+			console.log('Posters: %s', posters);
+			var movieTitles = dats.map(movie => movie.details.original_title)
+			var movieIds = dats.map(movie => movie.details.id)
+			console.log('Titles: %s', movieTitles);
+			console.log('Movie Ids: %s', movieIds);
+			dispatch({ type: 'FB_SNAP_RETRIEVED_WISHLIST', payload: {movies: dats, posters: posters, movieTitles: movieTitles, movieIds: movieIds}})
+
+		} else {
+			dispatch({ type: 'FB_SNAP_RETRIEVED_WISHLIST', payload: {movies: [], posters: [], movieTitles: [], movieIds: []}})
 		}
 	})
 }
 
 
-export const retrieveSnapshot = (user) => {
-	console.log('running retrieve');
-	return function(dispatch) { firebase.database().ref(`users/${user}/movies`).once('value', snapshot =>  {
+export const retrieveSnapshot = (user, route) => {
+	//This function can be run from any route/component
+	console.log('--------------------------');
+	console.log('retrieveSnapshot called');
+	console.log('--------------------------');
+
+	return function(dispatch) {
+		console.log('retrieveSnapshot dispatching...'); firebase.database().ref(`users/${user}/movies/${route}`).once('value', snapshot =>  {
 		console.log(snapshot.val());
 		if(snapshot.val() == null){
 			console.log('Snapshot returned null.');
@@ -73,8 +99,11 @@ export const retrieveSnapshot = (user) => {
 			var movieIds = dats.map(movie => movie.details.id)
 			console.log('Titles: %s', movieTitles);
 			console.log('Movie Ids: %s', movieIds);
-
-			dispatch({ type: 'FB_SNAP_RETRIEVED', payload: {movies: dats, posters: posters, movieTitles: movieTitles, movieIds: movieIds}})
+			if(route == 'favorites' ) {
+				dispatch({ type: 'FB_SNAP_RETRIEVED_FAVORITES', payload: {movies: dats, posters: posters, movieTitles: movieTitles, movieIds: movieIds}})
+			} else if (route == 'wishlist') {
+				dispatch({ type: 'FB_SNAP_RETRIEVED_WISHLIST', payload: {movies: dats, posters: posters, movieTitles: movieTitles, movieIds: movieIds}})
+			}
 
 		}
 
@@ -83,29 +112,17 @@ export const retrieveSnapshot = (user) => {
 
 }
 
-// export function updateLibrary(dats, posters, movieTitles, movieIds) {
-// 	return function(dispatch) {
-// 		dispatch( {
-// 			type: 'FB_SNAP_RETRIEVED',
-// 			payload: {
-// 				movies: dats,
-// 				posters: posters,
-// 				movieTitles: movieTitles,
-// 				movieIds: movieIds
-// 			}
-// 		})
-// 	}
-// }
 
 
-export function showMovieModal(data, val) {
+export function showMovieModal(data, fav, list) {
 	return function(dispatch) {
-		dispatch({ type: 'MOVIEMODAL_ON', payload: {poster_path: data.poster_path, title: data.title, details: data, enabled: val }})
+		dispatch({ type: 'MOVIEMODAL_ON', payload: {poster_path: data.poster_path, title: data.title, details: data, enabledF: fav, enabledL: list }})
 	}
 }
-export function swapButtons(val) {
+export function swapButtons(type, val) {
 	return function(dispatch) {
-		dispatch({type: 'BUTTON_SWAP', payload: val})
+		if(type == 'favorites') dispatch({type: 'BUTTON_SWAP_FAVORITES', payload: val})
+		else if(type == 'wishlist') dispatch({type:'BUTTON_SWAP_WISHLIST', payload: val})
 
 	}
 }
@@ -116,21 +133,30 @@ export function closeMovieModal() {
 	}
 }
 
-export const addMovieToLibrary = (uid, movieID, details) => {
+export const addMovieToFavorites = (uid, movieID, details) => {
 	return ((dispatch) => {
-		firebase.database().ref(`users/${uid}/movies`).push({movieID: movieID, details: details});
-		getSnapshot(uid,dispatch);
-		dispatch({type: 'BUTTON_SWAP', payload: false})
+		firebase.database().ref(`users/${uid}/movies/favorites`).push({movieID: movieID, details: details});
+		getSnapshot(uid, dispatch);
+		dispatch({type: 'BUTTON_SWAP_FAVORITES', payload: false})
 		dispatch({type: 'NOTIFYING', payload: {type: 'success', content: 'Sucessfully added movie to the Library!'}})
 	})
 }
-export const removeMovieFromLibrary = (uid, targetKey) => {
+export const addMovieToWishlist = (uid, movieID, details) => {
+	console.log('RUNNING WISHLIST');
+	return ((dispatch) => {
+		firebase.database().ref(`users/${uid}/movies/wishlist`).push({movieID: movieID, details: details});
+		getSnapshot(uid, dispatch);
+		dispatch({type: 'BUTTON_SWAP_WISHLIST', payload: false})
+		dispatch({type: 'NOTIFYING', payload: {type: 'success', content: 'Sucessfully added movie to the Library!'}})
+	})
+}
+export const removeMovieFromLibrary = (uid, targetKey, route) => {
 	console.log('beforeDispatch');
 	return ((dispatch) => {
 		console.log('inDispatch');
-		firebase.database().ref(`users/${uid}/movies/`).child(targetKey).remove();
-		getSnapshot(uid,dispatch);
-		// dispatch({type: 'BUTTON_SWAP', payload: false})
+		firebase.database().ref(`users/${uid}/movies/${route}/`).child(targetKey).remove();
+		getSnapshot(uid, dispatch);
+
 		dispatch({type: 'NOTIFYING', payload: {type: 'success', content: 'Sucessfully removed movie from the Library!'}})
 	})
 }

@@ -17,15 +17,20 @@ class PosterDiv extends Component {
     this.setState(obj)
   }
   handleClick(e) {
-    console.log(this.props.movieIds);
+    console.log(this.props.movieIdsF);
+    console.log(this.props.movieIdsL);
     console.log(this.props.fullData.id);
-    if(this.props.movieIds.indexOf(this.props.fullData.id) >= 0) {
-      console.log('Movie index was found.');
-        this.props.showMovieModal(this.props.fullData, false)  //disable button
-    } else {
-      console.log('Movie not found in lib');
-      this.props.showMovieModal(this.props.fullData, true)
-    } //not disabled
+    var favoritesEnableCheck = true;
+    var wishlistEnableCheck = true;
+    if(this.props.movieIdsF.indexOf(this.props.fullData.id) >= 0) {
+      favoritesEnableCheck = false;
+    }
+    if(this.props.movieIdsL.indexOf(this.props.fullData.id) >= 0) {
+      wishlistEnableCheck = false;
+    }
+
+    this.props.showMovieModal(this.props.fullData, favoritesEnableCheck, wishlistEnableCheck)  //disable button
+
 
 
 

@@ -89,13 +89,12 @@ class MovieModal extends Component {
                   </div>
 
 
-              </div> {/* End row */}
-            <ModalButtons key={this.state.key} buttonEnabled={this.props.buttonEnabled} addMovieToLibrary={this.props.addMovieToLibrary} currentUser = {this.props.currentUser} movieModalDetails = {this.props.movieModalDetails} closeMovieModal = {this.props.closeMovieModal} showMovieModal = {this.props.showMovieModal} swapButtons = {this.props.swapButtons}/>
+              </div>
+            <ModalButtons key={this.state.key} buttonFavoritesEnabled={this.props.buttonFavoritesEnabled} buttonWishlistEnabled={this.props.buttonWishlistEnabled} addMovieToFavorites={this.props.addMovieToFavorites} addMovieToWishlist={this.props.addMovieToWishlist} currentUser = {this.props.currentUser} movieModalDetails={this.props.movieModalDetails} closeMovieModal={this.props.closeMovieModal} showMovieModal={this.props.showMovieModal}
+            swapButtons={this.props.swapButtons}/>
 
             </Modal.Body>
-            {/* <Modal.Footer>
-              ------------Footer Text-------------------
-            </Modal.Footer> */}
+
           </Modal>
 
 

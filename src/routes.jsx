@@ -3,11 +3,14 @@ import { Route, Router, IndexRoute } from 'react-router';
 import App from './containers/App.jsx';
 import { Provider } from 'react-redux';
 import store, { history } from './store.js';
+
 import Home from './containers/Home.jsx';
 import Signin from './containers/Signin.jsx';
 import Signup from './containers/Signup.jsx';
-import Library from './containers/Library.jsx';
+import Favorites from './containers/Favorites.jsx';
+import Wishlist from './containers/Wishlist.jsx';
 import Search from './containers/Search.jsx';
+
 import fire from './fire.js';
 import {checkSession} from './actions/userActions.js';
 
@@ -39,7 +42,9 @@ const theRoutes = (
 				{/* <Route path='/signin' onEnter={checkReroute} component={Signin} /> */}
 				<Route path='/signin' component={Signin} />
 				<Route path="/signup" component={Signup} />
-				<Route path="/library" component={Library} />
+				<Route path="/favorites" component={Favorites} />
+				<Route path="/wishlist" component={Wishlist} />
+				{/* <Route path="/library/:id" component= {LibraryDynamic} /> */}
 				<Route path="/search" component={Search} />
 
 

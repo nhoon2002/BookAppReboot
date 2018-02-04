@@ -46,7 +46,8 @@ class Header extends React.Component {
         <Navbar.Collapse>
           <Nav>
             <NavItem eventKey={1} onClick={() => this.props.router.push('search')}>Search</NavItem>
-            <NavItem eventKey={2} onClick={() => this.props.router.push('library')}>Library</NavItem>
+            <NavItem eventKey={2} onClick={() => this.props.router.push('favorites')}>Favorites</NavItem>
+            <NavItem eventKey={3} onClick={() => this.props.router.push('Wishlist')}>Wishlist</NavItem>
           </Nav>
 
 
