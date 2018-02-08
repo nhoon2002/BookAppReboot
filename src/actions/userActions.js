@@ -270,6 +270,9 @@ export function createAccount(inputs) {
 
   }
 }
+
+
+
 export function SigninGoogle() {
 	return function(dispatch) {
 		dispatch({ type: 'GOOGLE_CREATE_ACCOUNT', payload: ""});
@@ -372,6 +375,78 @@ export function SigninFacebook() {
 		 // ...
 	 });
  }
+}
+export function SigninGithub() {
+ return function(dispatch) {
+	 dispatch({ type: 'GITHUB_CREATE_ACCOUNT', payload: ""});
+	 var provider = new firebase.auth.GithubAuthProvider();
+	 firebase.auth().signInWithPopup(provider).then(function(result) {
+		 // This gives you a Facebook Access Token. You can use it to access the FB API.
+		 var token = result.credential.accessToken;
+		 // The signed-in user info.
+		 var user = result.user;
+		 console.log("github auth details:", user);
+		 dispatch({ type: 'GITHUB_CREATE_ACCOUNT_SUCESSS', payload: user});
+		 //INITIALIZE FIREBASE USER DATABASE
+		 const dbRef = firebase.database().ref(`users/${user.uid}/`);
+		 // console.log('WOOOOOOO');
+		 dbRef.once('value').then(function(snapshot) {
+			 console.log(snapshot.val());
+			 if(!snapshot.val()) {
+				 console.log('User database info does not exist yet. Setting the initial object...');
+				 dbRef.set({
+					 email: user.email,
+					 name: user.displayName
+				 })
+				 .then(
+					 function(success) {
+						 console.log('DBREFSET SUCCESS');
+					 }
+				 )
+				 .catch(
+					 function(error) {
+						 console.log('Encounted error: dbRef');
+					 }
+				 )
+			 }
+		 });
+
+
+		 dispatch({ type: 'SESSION_EXISTS', payload: user});
+		 browserHistory.push('/');
+		 // ...
+	 }).catch(function(error) {
+		 // Handle Errors here.
+		 var errorCode = error.code;
+		 var errorMessage = error.message;
+		 console.log(errorMessage);
+		 // The email of the user's account used.
+		 var email = error.email;
+		 // The firebase.auth.AuthCredential type that was used.
+		 var credential = error.credential;
+		 dispatch({ type: 'GITHUB_CREATE_ACCOUNT_ERROR', payload: errorMessage});
+		 // ...
+	 });
+ }
+}
+export function signinDemo() {
+	return function(dispatch) {
+		dispatch({type:'SIGNIN_ACCOUNT', payload: ""})
+		//firebase authorization requirement
+			var auth = firebase.auth();
+			//Sign in function for firebase
+			var promise = auth.signInWithEmailAndPassword('demo@demo.com','password')
+				.then (function(user) {
+						 dispatch({ type: 'SIGNIN_ACCOUNT_SUCCESS', payload: user})
+					//Loads the dashboard upon successful signin
+					browserHistory.push('/');
+
+				})
+				.catch(function (error) {
+						 dispatch({ type: 'SIGNIN_ACCOUNT_ERROR', payload: error.message})
+				});
+		}
+
 }
 
 export function signinAccount(inputs) {

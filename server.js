@@ -21,6 +21,8 @@ app.get('*.js', function (req, res, next) {
 	console.log('hello, got in controller gz function', req.url);
   req.url = req.url + '.gz';
   res.set('Content-Encoding', 'gzip');
+  // res.set('Content-Transfer-Encoding', 'gzip');
+
   next();
 });
 

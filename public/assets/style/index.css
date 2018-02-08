@@ -152,24 +152,55 @@ div.social-wrap button {
    box-shadow: 0 4px 2px -2px black; /*Adjust color depending on color of background*/
    text-shadow: rgba(0, 0, 0, .5) -1px -1px 0;
 }
-button#facebook {
+.socialIconHolder{
+   text-align: center;
+   /* width: 90%; */
+   height: 45px;
+   /* border: 1px solid white; */
+}
+
+.socialIcon {
+   display: inline-block;
+   margin-left: 10px;
+   margin-right: 10px;
+   border: 1px solid white;
+   height: 35px;
+   /* margin: 0 auto; */
+}
+/* button#facebook {
    border-color: #2d5073;
    background-color: #3b5998;
-   background-image: url('https://icons.iconarchive.com/icons/danleech/simple/512/facebook-icon.png');
-   /*border-radius: 70px;*/
+   background-image: url('../images/icons/facebook.png');
+
 }
 button#googleplus {
     border-color: #111;
     background-color: #dc3e0e;
-    background-image:url('http://icons.iconarchive.com/icons/dakirby309/windows-8-metro/72/Web-Google-plus-alt-Metro-icon.png');
-    /*border-radius: 70px;*/
+    background-image:url('../images/icons/google.png');
+
 
 }
-button#chaehwa {
+
+button#github {
     border-color: #111;
-    background-color: rgb(233, 189, 239);
-    background-image:url('../images/chaehwa.png');
-    /*border-radius: 70px;*/
+    background-color: #333030;
+    background-image:url('../images/icons/github.png');
+
+
+}
+*/
+button#email {
+    border-color: #111;
+    background-color: #4a659e;
+    background-image:url('../images/icons/default.jpg');
+
+
+}
+button#guest {
+    border-color: #111;
+    background-color: #af3030;
+    background-image:url('../images/icons/default.jpg');
+
 
 }
 
@@ -289,7 +320,7 @@ button#chaehwa {
   /*background-color: rgba(255, 0, 0, 0.5);*/
   /*height: 500px;*/
   /*margin-right: 10px;*/
-  margin-top: 20px;
+  margin-top: 5%;
 }
 
 .rightPanel {
@@ -300,11 +331,11 @@ button#chaehwa {
 
 #search {
     -webkit-appearance: none;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    width: 40px;
+    /* font-family: Helvetica Neue, Helvetica, Arial, sans-serif; */
+    width: 60px;
     padding: 0 10px;
-    height: 40px;
-    font-size: 18px;
+    height: 60px;
+    font-size: 24px;
     color: black;
     line-height: 40px;
     border: 0;

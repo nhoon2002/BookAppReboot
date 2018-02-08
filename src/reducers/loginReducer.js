@@ -5,6 +5,7 @@ export function loginReducer (
      signinginAccount: false,
      signinginGoogle: false,
      signinginFacebook: false,
+     signinginGithub: false,
      accountDetails: "",
      error: "",
 
@@ -30,6 +31,26 @@ export function loginReducer (
          return {
             ...state,
             signinginGoogle: false,
+            error: action.payload
+         }
+      }
+      case "GITHUB_CREATE_ACCOUNT": {
+         return {
+            ...state,
+            signinginGithub: true,
+         }
+      }
+      case "GITHUB_CREATE_ACCOUNT_SUCCESS": {
+         return {
+            ...state,
+            signinginGithub: false,
+            accountDetails: action.payload
+         }
+      }
+      case "GITHUB_CREATE_ACCOUNT_ERROR": {
+         return {
+            ...state,
+            signinginGithub: false,
             error: action.payload
          }
       }

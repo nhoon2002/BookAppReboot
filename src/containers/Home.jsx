@@ -20,7 +20,7 @@ class Home extends Component {
 	componentDidMount() {
 
 
-		
+
 	}
 	render() {
 
@@ -72,16 +72,22 @@ class Home extends Component {
 					<div className='col-md-2 col-lg-3 col-sm-1'></div>
 					<div className='col-md-8 col-lg-6 col-sm-10 homeslate'>
 						<div className= 'social-wrap a'>
-
-							 <button id='facebook' onClick={() => this.props.SigninFacebook()}>
-								 Log in with Facebook
-							 </button>
-							 {/* <br/> */}
-							 <button id='googleplus' onClick={() => this.props.SigninGoogle()}>
-								 Log in with Google+
-							 </button>
-							 <button id='chaehwa' onClick={() => this.props.router.push('/signup')}>
+							<div className='socialIconHolder'>
+								 {/* <div> */}
+								 	<img className='socialIcon' src='assets/images/icons/facebook.png' id='facebook' onClick={() => this.props.SigninFacebook()}/>
+							 	 {/* </div> */}
+								 {/* <div> */}
+								 	<img className='socialIcon' src='assets/images/icons/google.png' id='googleplus' onClick={() => this.props.SigninGoogle()}/>
+							    {/* </div> */}
+							 	 {/* <div> */}
+								 	<img className='socialIcon' src='assets/images/icons/github.png' id='github' onClick={() => this.props.SigninGithub()}/>
+							 	{/* </div> */}
+							 </div>
+							 <button id='email' onClick={() => this.props.router.push('/signup')}>
 								 Sign up with email
+							 </button>
+							 <button id='guest' onClick={() => this.props.signinDemo()}>
+								 Login as Guest
 							 </button>
 
 						 </div>
